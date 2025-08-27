@@ -3,11 +3,9 @@ import './Navbar.css'
 function Navbar() {
     return (
         <nav>
-            <ul>
-                <li><a href="/"></a>Home</li>
-                <li><a href="/About"></a>About</li>
-                <li><a href="/Contscts"></a>Contacts</li>
-            </ul>
+            <div id='logo'>Logo</div>
+            <button  id='analysis_btn'> Analysis</button>
+            <button id='profile_btn'>Profile</button>
         </nav>
     );
 }
