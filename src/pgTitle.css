@@ -11,3 +11,10 @@ div h1 {
     color: transparent;
 
 }
+
+div h4{
+    font-size:24px;
+    font-weight:300;
+    color:lightgray;
+    
+}
