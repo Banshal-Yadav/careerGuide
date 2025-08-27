@@ -1,0 +1,9 @@
+.card_tab {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+div {
+    margin-top: 5rem;
+}

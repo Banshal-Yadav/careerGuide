@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import Pgtitle from './pgTitle';
 import Button from './Button';
 import Img from "./img";
+import Feature from './Feature';
 function App() {
   return (
     <div>
@@ -10,6 +11,7 @@ function App() {
       <Pgtitle />
       <Button />
       <Img/>
+      <Feature />
     </div>
   );
 }
