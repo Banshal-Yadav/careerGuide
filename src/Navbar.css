@@ -1,16 +1,30 @@
 nav {
-    background-color: rgb(203, 203, 203);
-    padding: 1rem;
-    align-items: center;
-}
-
-nav ul {
-    list-style: none;
+    background-color: hsla(0, 0%, 8%, 0.80);
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    margin: 0;
     display: flex;
-    gap:20px;
+    justify-content: left;
+    gap: 20px;
+}
+nav button {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 10px;
+}
+#profile_btn { 
+     
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
+#analysis_btn {
+    margin-left: 83%;
+}
+#logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav div {
+
 }
