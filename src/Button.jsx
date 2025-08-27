@@ -1,8 +1,8 @@
 function Button() {
     return (
-        <div>
-            <button>
-
+        <div className="btn">
+            <button>Get Started
+             
             </button>
             </div>
     );
