@@ -1,7 +1,9 @@
+import './pgTitle.css'
+
 function Pgtitle() {
     return (
         <div>
-            <h1 >Title</h1>
+            <h1 > Your AI Career Coach <br />for Professional Sucess</h1>
         </div>
     )
 }
