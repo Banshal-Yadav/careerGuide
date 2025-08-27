@@ -1,0 +1,16 @@
+nav {
+    background-color: rgb(203, 203, 203);
+    padding: 1rem;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap:20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
