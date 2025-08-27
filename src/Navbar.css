@@ -1,25 +1,27 @@
 nav {
-    background-color: hsla(0, 0%, 8%, 0.80);
+    background-color: var(--primary-bg);
     padding: 1rem 1.5rem 1rem 1.5rem;
     margin: 0;
+    border-style:solid;
+    border-color: rgb(37, 37, 37);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0.5px;
     display: flex;
     justify-content: left;
     gap: 20px;
 }
 nav button {
-    background-color: white;
-    color: black;
-    font-size: 1rem;;
-    font-weight: 200px;
-    border-radius: 4px;
-    padding: 4px;
+   width: 200px;
+    
 }
 #profile_btn { 
      
 }
 
 #analysis_btn {
-    margin-left: 83%;
+    margin-left: 75%;
 }
 #logo {
     font-size: 1.5rem;

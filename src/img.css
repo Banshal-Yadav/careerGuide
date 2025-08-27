@@ -1,10 +1,5 @@
-.img{
-    margin-top:1.2rem;
-    background-image:-moz-radial-gradient();
-    border:2px solid gray;
-    
-    
-}
-.img:hover{
-    border-color:aqua;
+div img{
+    margin-top: 4rem;
+    border-radius: 1.5rem;
+    height: 40rem;
 }

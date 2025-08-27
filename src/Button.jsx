@@ -3,7 +3,6 @@ function Button() {
     return (
         <div className="btn">
             <button>Get Started
-             
             </button>
             </div>
     );
