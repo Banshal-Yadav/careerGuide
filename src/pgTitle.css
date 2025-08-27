@@ -3,4 +3,11 @@ div h1 {
     line-height: 4rem;
     padding: 0.5rem;
     color: antiquewhite;
+    font-weight: bold;
+    background: linear-gradient(to bottom, #e4dfdd, #403f3e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+
 }
