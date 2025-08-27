@@ -1,3 +1,4 @@
+import "./Button.css";
 function Button() {
     return (
         <div className="btn">

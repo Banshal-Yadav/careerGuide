@@ -1,3 +1,4 @@
+import "./img.css";
 function Img() {
     return (
         <div className="img">
