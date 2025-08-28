@@ -1,7 +1,6 @@
 nav {
     background-color: var(--primary-bg);
     padding: 1rem 1.5rem 1rem 1.5rem;
-    /* margin: 0; */
     border-style:solid;
     border-color: rgb(37, 37, 37);
     border-left-width: 0;
@@ -9,7 +8,6 @@ nav {
     border-top-width: 0;
     border-bottom-width: 0.5px;
     display: flex;
-    /* justify-content: left; */
     justify-content:space-between;
     gap: 20px;
 }

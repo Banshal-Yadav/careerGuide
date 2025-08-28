@@ -6,9 +6,14 @@
     border-radius: 9px;
     border-color: rgb(62, 62, 62);
     padding: 1rem;
+    padding-top: 2rem;
     transition: 0.5s;
 }
-div p {
+
+.card-title {
+    
+}
+.card-info {
     color: rgb(158, 154, 154);
 }
 
