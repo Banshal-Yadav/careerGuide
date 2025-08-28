@@ -1,10 +1,9 @@
 import "./Button.css";
 function Button() {
     return (
-        <div className="btn">
-            <button>Get Started
-            </button>
-            </div>
+        <div className="get-started-btn-container">
+            <button className="get-started-btn">Get Started</button>
+        </div>
     );
 }
 

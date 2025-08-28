@@ -1,5 +1,9 @@
+.get-started-btn-container {
+  margin: 2rem;
+  
+}
 
-button {
+.get-started-btn {
   border-radius: 8px;
   border: 1px solid ;
   padding: 0.4em 1.5em;

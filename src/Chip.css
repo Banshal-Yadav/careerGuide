@@ -1,0 +1,8 @@
+.chip-btn {
+    border-radius: 8px;
+    border: transparent ;
+    padding: 0.4rem;
+    background-color: #6a5171;
+    color:rgb(230, 222, 222);
+    cursor: pointer;
+}
