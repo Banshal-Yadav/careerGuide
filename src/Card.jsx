@@ -1,8 +1,8 @@
 import './Card.css'
 
-function Card({icon: Icon, title, info}) {
+function Card({icon: Icon, title, info, className=""}) {
     return (
-        <div className="card">
+        <div className={`card ${className}`}>
             <Icon
                 size={40}           
                 color="#3b82f6"    

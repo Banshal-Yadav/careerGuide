@@ -5,8 +5,12 @@
   padding: 0;
   text-align: center; /* align texts in the center vertically*/
 
+  /* color variables */
   --primary-bg:  hsla(0, 0%, 8%);
+  --secondary-bg: rgb(37, 37, 37);
+
   background-color: var(--primary-bg);
+  
 }
 
 

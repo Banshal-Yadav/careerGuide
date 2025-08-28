@@ -1,0 +1,17 @@
+.feature {
+    margin-top: 7rem;
+}
+
+.feature-title {
+    font-size: 4rem;
+    line-height: 4rem;
+    padding: 0.5rem;
+    margin-bottom: 0rem;
+    color: rgb(121, 117, 113);
+    font-weight: bold;
+    background: linear-gradient(to bottom, #e4dfdd, #403f3e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
