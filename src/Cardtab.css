@@ -4,6 +4,6 @@
     justify-content: center;
     gap: 20px;
 }
-div {
+.card_tab {
     margin-top: 5rem;
 }
