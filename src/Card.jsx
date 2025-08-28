@@ -1,11 +1,15 @@
 import './Card.css'
 
-function Card({icon, title, info}) {
+function Card({icon: Icon, title, info}) {
     return (
         <div className="card">
-            <h2>{icon}</h2>
-            <h3>{title}</h3>
-            <p>{info}</p>
+            <Icon
+                size={40}           
+                color="#3b82f6"    
+                strokeWidth={1.5}   
+            />
+            <h3 className='card-title'>{title}</h3>
+            <p className='card-info'>{info}</p>
         </div>
     );
 }
