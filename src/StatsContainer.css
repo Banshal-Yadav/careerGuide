@@ -1,0 +1,21 @@
+.Stats-Container {
+    margin: 6rem 0 0 ;
+    
+}
+
+.stats-title {
+    margin-bottom: 0;
+    font-size: 2.5rem;
+    padding: 0.5rem;
+    color: antiquewhite;
+    font-weight: bold;
+    background: var(--gradient-main-title);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.stats-info {
+    color: var(--text-muted)
+}
