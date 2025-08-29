@@ -48,6 +48,7 @@ function App() {
         <Stats />
       <Feature  />
       <Footer />
+    
     </div>
   );
 }
