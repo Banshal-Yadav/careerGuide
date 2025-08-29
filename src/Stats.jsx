@@ -1,15 +1,14 @@
 import './Stats.css';
 import Card from './Card.jsx';
-import {Brain, MessageSquare, BarChart3, FileText} from 'lucide-react';
+import {Target, TrendingDown, Eye, Users} from 'lucide-react';
 
 const Stats = () => {
     return (
-        <div className='stats-container'>
-            <Card className='stats-card' icon={Brain } title="AI-Powered Career Guidance"  info="Get personalized career advice and insights powered by advanced Ai technology."/> 
-            <Card className='stats-card' icon={MessageSquare} title="Interview preparation"  info="practice with role-specific question and get instant feedback to improve your performance"/> 
-            <Card className='stats-card' icon={BarChart3} title="Industry Insight"  info="Stay ahead with real-time industr trends, salary data, and market analysis."/>
-            <Card className='stats-card' icon={FileText} title="Smart Resume Creation"  info="generate ATS-optimized resumes with AI assistance"/>
-            
+        <div className='stats-tab'>
+            <Card className='stats-card' icon={Target} title="Career Confusion Crisis" info="70% of students don't know what career to pursue after Class 12." iconColor='red'  /> 
+            <Card className='stats-card' icon={TrendingDown} title="Employability Gap"  info="Only 42.6% of graduates are actually employable " iconColor='orange'/> 
+            <Card className='stats-card' icon={Eye} title="Limited Awareness"  info=" 93% of students know just 7 career options out of 250+ available" iconColor='tomato'/>
+            <Card className='stats-card' icon={Users} title="Guidance Shortage"  info="Career counselor ratio: 1:15,000 (should be 1:250)" iconColor='yellow'/>
         </div>
     );
 }

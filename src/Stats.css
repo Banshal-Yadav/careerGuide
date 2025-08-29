@@ -1,5 +1,5 @@
-.stats-container {
-    margin: 2rem 0 0.5rem 0;
+.stats-tab {
+    margin: 0rem 0 0.5rem 0;
     padding: 0.5rem;
     display: flex;
     justify-content: center;
@@ -9,4 +9,5 @@
 .stats-card {
     background-color: var(--primary-bg);
     border: none;
+    font-size: 1.1rem;
 }

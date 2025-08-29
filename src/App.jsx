@@ -5,7 +5,7 @@ import GetStartBtn from './GetStartBtn';
 import Feature from './Feature';
 import Chiptab from './Chiptab';
 import Footer from './footer';
-import Stats from './Stats';
+import StatsContainer from './StatsContainer';
 
 function App() {
   return (
@@ -45,7 +45,7 @@ function App() {
           c5="Medical Writer" 
           c6="Health Informatics" 
         />
-        <Stats />
+      <StatsContainer />
       <Feature  />
       <Footer />
     
