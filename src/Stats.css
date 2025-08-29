@@ -1,3 +1,12 @@
 .stats-container {
-    
+    margin: 2rem 0 0.5rem 0;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.stats-card {
+    background-color: var(--primary-bg);
+    border: none;
 }

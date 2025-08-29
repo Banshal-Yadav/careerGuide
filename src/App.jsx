@@ -4,7 +4,8 @@ import Pgtitle from './pgTitle';
 import GetStartBtn from './GetStartBtn';
 import Feature from './Feature';
 import Chiptab from './Chiptab';
-import Footer from './footer.jsx';
+import Footer from './footer';
+import Stats from './Stats';
 
 function App() {
   return (
@@ -44,7 +45,8 @@ function App() {
           c5="Medical Writer" 
           c6="Health Informatics" 
         />
-      <Feature />
+        <Stats />
+      <Feature  />
       <Footer />
     </div>
   );
