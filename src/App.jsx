@@ -2,9 +2,10 @@ import './App.css'
 import Navbar from './Navbar';
 import Pgtitle from './pgTitle';
 import GetStartBtn from './GetStartBtn';
-import Chip from "./Chip";
 import Feature from './Feature';
 import Chiptab from './Chiptab';
+import Footer from './footer.jsx';
+
 function App() {
   return (
     <div>
@@ -44,6 +45,7 @@ function App() {
           c6="Health Informatics" 
         />
       <Feature />
+      <Footer />
     </div>
   );
 }
