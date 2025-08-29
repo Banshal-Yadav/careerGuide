@@ -4,16 +4,17 @@
     border-style: solid;
     border-width: 1px;
     border-radius: 9px;
-    border-color: rgb(62, 62, 62);
+    border-color: var(--border-color);
+    background-color: var(--card-bg);
     padding: 1rem;
     padding-top: 2rem;
     transition: 0.5s;
 }
 
 .card-info {
-    color: rgb(158, 154, 154);
+    color: var(--text-secondary);
 }
 
 .card:hover {
-     border-color: rgb(105, 103, 103);
+    border-color: rgb(105, 103, 103);
 }

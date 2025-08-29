@@ -1,26 +1,26 @@
 .get-started-btn-container {
-  margin: 2rem;
+  margin: 1.5rem 0 2rem 0;
 
 }
 
 .get-started-btn {
   border-radius: 8px;
   border: 1px solid ;
-  padding: 0.7em 2em;
+  padding: 0.5em 2.5em;
   font-size: 1em;
   font-weight: 700;
   font-family: inherit;
-  background-color: #fffbfb;
+  background-color: var(--btn-primary);
   color:black;
   cursor: pointer;
   transition: 0.2s ease-in-out;
 }
 
 .get-started-btn:hover {
-  background-color: rgb(210, 210, 210);
+  background-color: var(--btn-primary-hover);
 }
 
 .get-started-btn:active {
-  background-color: #a5a5a5;
+  
 }
 
