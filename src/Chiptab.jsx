@@ -1,15 +1,15 @@
 import Chip from './Chip.jsx';
 import './Chiptab.css';
 
-const Chiptab = () => {
+const Chiptab = ({c1, c2, c3, c4, c5, c6}) => {
     return (
         <div className='chip-tab'>
-            <Chip text="Ai" />
-            <Chip text="Frontend" />
-            <Chip text="Java Devloper" />
-            <Chip text="Researcher" />
-            <Chip text="Cloud" />
-            <Chip text="Bigdata" />
+            <Chip text={c1} />
+            <Chip text={c2} />
+            <Chip text={c3} />
+            <Chip text={c4} />
+            <Chip text={c5} />
+            <Chip text={c6} />
         </div>
     );
 }

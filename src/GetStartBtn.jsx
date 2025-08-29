@@ -1,4 +1,4 @@
-import "./Button.css";
+import "./GetStartBtn.css";
 function Button() {
     return (
         <div className="get-started-btn-container">
