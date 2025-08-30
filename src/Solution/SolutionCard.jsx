@@ -4,15 +4,15 @@ const SolutionCard = () => {
     return (
         <div className='solution-card-container' >
             <p className='solution-para'> 
-                Traditional career counseling fails because it's
-                generic and outdated. Our AI-powered coach analyzes your unique profile, 
-                real-time market data, and  emerging opportunities to provide personalized 
-                guidance that evolves with you.
+                <b>Traditional</b> career counseling <b>fails</b>  because it's
+                generic and <b>outdated</b>. Our <b>AI-powered coach</b> analyzes your <b>unique</b> profile, 
+                real-time market data, and  emerging opportunities to provide <b>personalized 
+                guidance</b> that evolves with <b>YOU</b>.
             </p>
 
-            <p id='p1' className='solution-point' >1. Analyze → Complete skills & interest assessment</p>
-            <p id='p2' className='solution-point' >2. Match → AI finds your ideal career paths from 250+ options</p>
-            <p id='p3' className='solution-point' >3. Guide → Get personalized roadmap with actionable steps</p>
+            <p  className='solution-point' >1. Analyze → Complete skills & interest assessment</p>
+            <p  className='solution-point' >2. Match → AI finds your ideal career paths from 250+ options</p>
+            <p  className='solution-point' >3. Guide → Get personalized roadmap with actionable steps</p>
 
         </div>
     );

@@ -1,4 +1,4 @@
-nav {
+.navbar {
     background-color: var(--primary-bg);
     padding: 1rem 1.5rem 1rem 1.5rem;
     border-style:solid;
@@ -11,30 +11,32 @@ nav {
     justify-content:space-between;
     gap: 20px;
 }
-nav button {
-   width: 200px;
-    
-}
 
 #profile_btn { 
+    width: 200px;
+    min-width: 80px;
     background-color: white;
     color: black;
-    border-radius:  12px;
+    font-weight: bold;
+    border-radius:  10px;
     border: 1px solid gray;
     cursor: pointer;
 }
 
 #analysis_btn {
+    width: 250px;
+    min-width: 80px;
     margin-left: 75%;
     background-color: var(--primary-bg);
     color: white;
+    font-weight: bold;
     border-radius:  12px;
     border: 1px solid gray;
     cursor: pointer;
 }
 
 #logo {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
 }
 
