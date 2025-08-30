@@ -1,10 +1,10 @@
 import './App.css'
-import Navbar from './Navbar';
-import Pgtitle from './pgTitle';
-import GetStartBtn from './GetStartBtn';
-import Feature from './Feature';
-import Footer from './footer';
-import StatsContainer from './StatsContainer';
+import Navbar from './Navbar/Navbar.jsx';
+import Pgtitle from './PgTitle/pgTitle.jsx';
+import GetStartBtn from './GetStartedBtn/GetStartBtn.jsx';
+import Feature from './Card/Feature.jsx';
+import Footer from './Footer/footer.jsx';
+import StatsContainer from './Stats/StatsContainer.jsx';
 import ChipTabContainer from "./Chip/ChipTabContainer.jsx";
 
 function App() {

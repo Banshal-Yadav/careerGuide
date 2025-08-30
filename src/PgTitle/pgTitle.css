@@ -1,6 +1,6 @@
 .pg-title {
-    font-size: 4rem;
-    line-height: 4rem;
+    font-size: 5rem;
+    line-height: 5rem;
     padding: 0.5rem;
     margin: 0rem;
     color: antiquewhite;
@@ -15,7 +15,7 @@
 
 .title-info{
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 500;
     color: var(--text-muted);
-    margin: 2rem 0 0 0;
+    margin: 1.2rem 0 0 0;
 }

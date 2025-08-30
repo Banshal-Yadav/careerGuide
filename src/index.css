@@ -82,7 +82,7 @@
   --focus-ring: hsla(245, 70%, 65%, 0.4);
   
   /* Title Gradients */
-  --gradient-main-title: linear-gradient(to bottom, #ffffff, #515151);
+  --gradient-main-title: linear-gradient(to bottom, #ffffff, #666666);
   --gradient-section-title: linear-gradient(to bottom, #f0f0f0, #707070);
   --gradient-subtitle: linear-gradient(to bottom, #e0e0e0, #606060);
   --gradient-accent-title: linear-gradient(to bottom, #a78bfa, #4c1d95);

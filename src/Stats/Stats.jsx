@@ -1,5 +1,5 @@
 import './Stats.css';
-import Card from './Card.jsx';
+import Card from '../Card/Card.jsx';
 import {Target, TrendingDown, Eye, Users} from 'lucide-react';
 
 const Stats = () => {

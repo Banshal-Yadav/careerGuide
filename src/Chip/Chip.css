@@ -1,7 +1,7 @@
 .chip-btn {
     border: 1px solid gray ;
     border-radius: 12px;
-    padding: 0.5rem;
+    padding: 0.7rem;
     background-color: transparent;
     color:var(--text-secondary);
     cursor: pointer;
@@ -11,6 +11,4 @@
 .chip-btn:hover {
     color: var(--text-primary);
     border: 1px solid var(--text-secondary) ;
-    transform: scale(1.1);
-    background-color: var(--chip-researcher-bg);
 }
