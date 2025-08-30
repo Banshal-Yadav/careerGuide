@@ -1,0 +1,32 @@
+.solution-card-container {
+    border-radius: 16.5px;
+    border: 1px solid gray;
+    min-width: fit-content;
+    margin: 0 30% 0 30%;
+    padding: 0rem 2rem 0.5rem 2rem;
+}
+
+.solution-para {
+    text-align: left;
+    margin: 2rem 0 2rem 0;
+}
+
+.solution-point {
+    text-align: left;
+    border: 1px solid gray;
+    padding: 0.5rem 1rem;
+    border-radius: 32px;
+    color: rgb(65, 64, 64);
+    font-weight: bold;
+}
+#p1 {
+    background-color: var(--accent-secondary);
+}
+
+#p2 {
+    background-color: var(--accent-tertiary);
+}
+
+#p3 {
+    background-color: rgb(225, 127, 110);
+}

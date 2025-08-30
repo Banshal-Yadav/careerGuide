@@ -5,7 +5,8 @@ import GetStartBtn from './GetStartedBtn/GetStartBtn.jsx';
 import Feature from './Card/Feature.jsx';
 import Footer from './Footer/footer.jsx';
 import StatsContainer from './Stats/StatsContainer.jsx';
-import ChipTabContainer from "./Chip/ChipTabContainer.jsx";
+import ChipTabContainer from './Chip/ChipTabContainer.jsx';
+import SolutionSec from './Solution/SolutionSec.jsx';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <GetStartBtn />
       <ChipTabContainer />
       <StatsContainer />
+      <SolutionSec />
       <Feature  />
       <Footer />
     
