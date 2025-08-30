@@ -1,18 +1,19 @@
 .footer{
     background-color: var(--secondary-bg);
-    height:230px;
-    display:flex;
-    text-align:left;
-    padding :1.2rem;
+    height: 230px;
+    display: flex;
+    text-align: left;
+    padding: 1.2rem;
 }
 .ftr-div {
-    color:var(--text-primary);
-    width:200px;
-    margin-right:1rem;
-    margin-top:1rem;
+    color: var(--text-primary);
+    width: 200px;
+    margin-right: 1rem;
+    margin-top: 1rem;
     
 }
 .ftr-div p {
+    color: var(--text-secondary);
     margin:10px 0;
 }
 
