@@ -5,7 +5,7 @@ import GetStartBtn from './GetStartBtn';
 import Feature from './Feature';
 import Footer from './footer';
 import StatsContainer from './StatsContainer';
-import ChipTabContainer from './ChipTabContainer';
+import ChipTabContainer from "./Chip/ChipTabContainer.jsx";
 
 function App() {
   return (

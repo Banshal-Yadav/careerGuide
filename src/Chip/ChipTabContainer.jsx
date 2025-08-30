@@ -1,5 +1,5 @@
-import './ChipTabContainer.css';
-import Chiptab from './Chiptab';
+import "./ChipTabContainer.css";
+import Chiptab from "./Chiptab";
 
 const ChipTabContainer = () => {
     return (

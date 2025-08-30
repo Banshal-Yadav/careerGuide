@@ -1,4 +1,4 @@
-import Chip from './Chip/Chip.js';
+import Chip from './Chip.jsx';
 import './Chiptab.css';
 
 const Chiptab = ({c1, c2, c3, c4, c5, c6}) => {
