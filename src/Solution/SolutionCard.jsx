@@ -10,9 +10,19 @@ const SolutionCard = () => {
                 guidance</b> that evolves with <b>YOU</b>.
             </p>
 
-            <p  className='solution-point' >1. Analyze → Complete skills & interest assessment</p>
-            <p  className='solution-point' >2. Match → AI finds your ideal career paths from 250+ options</p>
-            <p  className='solution-point' >3. Guide → Get personalized roadmap with actionable steps</p>
+           <div className="solution-point">
+                <p>1. Analyze → </p>
+                <p>Complete skills & interest assessment</p>
+            </div> 
+           <div className="solution-point">
+                <p>2. Match → </p>
+                <p>AI finds your ideal career paths from 250+ options</p>
+           </div>
+            <div className='solution-point'>
+                <p>3. Guide → </p>
+                <p> Get personalized roadmap with actionable steps</p>
+            </div>
+            
 
         </div>
     );

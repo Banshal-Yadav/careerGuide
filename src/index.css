@@ -85,7 +85,8 @@
   --gradient-main-title: linear-gradient(to bottom, #ffffff, #666666);
   --gradient-section-title: linear-gradient(to bottom, #f0f0f0, #707070);
   --gradient-subtitle: linear-gradient(to bottom, #e0e0e0, #606060);
-  --gradient-accent-title: linear-gradient(to bottom, #a78bfa, #4c1d95);
+  --gradient-accent-title-one: linear-gradient(to bottom, #ffffff, #653f9f);
+  --gradient-accent-title-two: linear-gradient(to bottom, #ffffff, #4831f460);
   
   /* Other Gradients */
   --gradient-card: linear-gradient(135deg, 
