@@ -33,7 +33,6 @@ function App() {
       <Navbar />
       <Pgtitle />
       <GetStartBtn />
-      <Assessment />
       <ChipTabContainer />
       <StatsContainer />
       <SolutionSec />
