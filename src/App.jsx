@@ -10,6 +10,8 @@ import SolutionSec from './Solution/SolutionSec.jsx';
 import Auth from './components/Auth.jsx';
 import { useAuth } from './hooks/useAuth.js';
 import Assessment from './components/Assessment.jsx'; 
+import { Routes, Route } from "react-router-dom";
+import AssessmentPg from './components/AssessmentPg.jsx';
 
 function App() {
   const { user, loading } = useAuth();
@@ -29,17 +31,31 @@ function App() {
     );
   }
   return (
-    <div>
-      <Navbar />
-      <Pgtitle />
-      <GetStartBtn />
-      <ChipTabContainer />
-      <StatsContainer />
-      <SolutionSec />
-      <Feature  />
-      <Footer />
-    
-    </div>
+    <Routes>
+      <Route
+      path="/"
+      element={
+      <>
+        <Navbar />
+        <Pgtitle />
+        <GetStartBtn />
+        <ChipTabContainer />
+        <StatsContainer />
+        <SolutionSec />
+        <Feature  />
+        <Footer />
+      </>
+      }
+      />
+
+      <Route path="/AssessmentPg" element={
+        <>
+        <Navbar />
+        <AssessmentPg/>
+        <Footer />
+        </>
+        } />
+    </Routes>
   );
 }
 
