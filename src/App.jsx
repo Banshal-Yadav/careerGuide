@@ -12,6 +12,7 @@ import { useAuth } from './hooks/useAuth.js';
 import Assessment from './components/Assessment.jsx'; 
 import { Routes, Route } from "react-router-dom";
 import AssessmentPg from './components/AssessmentPg.jsx';
+import Faq from "./Card/Faq.jsx";
 
 function App() {
   const { user, loading } = useAuth();
@@ -43,6 +44,7 @@ function App() {
         <StatsContainer />
         <SolutionSec />
         <Feature  />
+        <Faq/>
         <Footer />
       </>
       }
