@@ -1,3 +1,4 @@
+// list of skills with different names and aliases
 export const skillsData = {
   technical: [
     { id: 'javascript', name: 'JavaScript', aliases: ['js', 'javascript', 'ecmascript', 'node'] },
@@ -38,6 +39,7 @@ export const skillsData = {
   ]
 };
 
+// list of career paths with their required skills.
 export const careersData = [
   {
     id: 'frontend_developer',
@@ -120,3 +122,67 @@ export const careersData = [
     growthProspect: 'Very High'
   }
 ];
+
+//  HELPER FUNCTIONS
+
+// tries to find a matching skill from the  list based on what the user typed
+const findSkillLocally = (userInput) => {
+  const allSkills = [
+    ...skillsData.technical,
+    ...skillsData.soft,
+    ...skillsData.industry
+  ];
+  
+  const cleanInput = userInput.toLowerCase().trim();
+  if (!cleanInput) return null;
+
+  return allSkills.find(skill => 
+    skill.aliases.some(alias => cleanInput.includes(alias.toLowerCase()))
+  );
+};
+
+// takes the user's comma-separated skills and matches them to our database
+export const processSkillsLocally = (rawSkills) => {
+  if (!rawSkills || typeof rawSkills !== 'string') return [];
+
+  const skillList = rawSkills.split(',').map(s => s.trim());
+  const matchedSkills = [];
+
+  skillList.forEach(userSkill => {
+    const foundSkill = findSkillLocally(userSkill);
+    if (foundSkill) {
+      const category = Object.keys(skillsData).find(cat => skillsData[cat].some(s => s.id === foundSkill.id));
+      matchedSkills.push({
+        ...foundSkill,
+        category: category || 'unknown',
+        originalInput: userSkill,
+      });
+    }
+  });
+
+  // make sure we only have unique skills in the final list
+  const uniqueSkills = Array.from(new Map(matchedSkills.map(skill => [skill.id, skill])).values());
+  return uniqueSkills;
+};
+
+// finds the most relevant careers based on the user's skills
+export const getRelevantCareers = (userSkillIds) => {
+  if (!userSkillIds || userSkillIds.length === 0) return [];
+
+  return careersData
+    .map(career => {
+      const allRequiredSkills = [
+        ...career.requiredSkills,
+        ...career.softSkills,
+        ...career.industrySkills
+      ];
+      
+      const matchCount = userSkillIds.filter(skillId => allRequiredSkills.includes(skillId)).length;
+      
+      return { ...career, matchCount };
+    })
+    .filter(career => career.matchCount > 0)
+    .sort((a, b) => b.matchCount - a.matchCount)
+    .slice(0, 10); // only return the top 10 matches
+};
+

@@ -1,38 +1,46 @@
 .assessment-container {
-  padding: 2rem;
-  max-width: 600px;
+  padding: 2rem 2.5rem;
+  max-width: 900px;
   margin: 4rem auto;
   background-color: var(--primary-bg);
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border: 1px solid gray;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
 }
 
 .assessment-title {
   text-align: center;
-  color: #333333;
-  margin-bottom: 2rem;
-  font-size: 2.2rem;
+  color: #eee;
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  background: var( --gradient-subtitle);
+  background: var(--gradient-subtitle);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+.assessment-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  margin-top: 0;
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+}
+
 .success-title {
   text-align: center;
-  color: #28a745;
-  margin-bottom: 2rem;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
   font-size: 2.2rem;
   font-weight: 700;
 }
 
 .error-message {
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: var(--error-bg);
+  color: var(--error);
   padding: 1rem;
   border-radius: 8px;
-  border: 1px solid #f5c6cb;
+  border: 1px solid var(--error);
   margin-bottom: 1.5rem;
   text-align: center;
   font-weight: 500;
@@ -59,76 +67,56 @@
   text-align: left;
 }
 
-.form-input {
+.form-input, .form-select {
   padding: 1rem;
-  border: 2px solid gray;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   font-size: 1rem;
-  transition: all 0.3s ease;
-  background-color: transparent;
+  color: var(--text-primary);
+  background-color: var(--secondary-bg);
   font-family: inherit;
-  transition: 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
-.form-input:focus {
+.form-input:focus, .form-select:focus {
   outline: none;
-  border-color: var(--text-primary);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px hsla(245, 70%, 65%, 0.3);
 }
 
 .form-input::placeholder {
   color: var(--text-muted);
-  font-style: italic;
 }
 
 .form-select {
-  padding: 1rem;
-  border: 2px solid gray;
-  border-radius: 8px;
-  font-size: 1rem;
-  background-color: var(--primary-bg);
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: inherit;
-}
-
-.form-select:focus {
-  outline: none;
-  border-color: var(--text-primary);
-  background-color: var(--primary-bg);
-  transform: translateY(-2px);
 }
 
 .submit-btn {
   padding: 1rem 2rem;
-  background-color: var(--btn-secondary);
+  background: var(--accent-primary);
   color: white;
-  border: 1px solid gray;
+  border: none;
   border-radius: 8px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
-.submit-btn:hover {
-    background-color: var(--btn-secondary-hover);
+.submit-btn:hover:not(:disabled) {
+    background: hsla(245, 70%, 75%);
 }
 
 .submit-btn:disabled {
-  background: #cccccc;
+  background: #555;
   cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
 }
 
 .submit-btn.loading {
-  background: #cccccc;
   cursor: wait;
   position: relative;
-  overflow: hidden;
 }
 
 .submit-btn.loading::after {
@@ -139,32 +127,32 @@
   width: 20px;
   height: 20px;
   margin: -10px 0 0 -10px;
-  border: 2px solid #ffffff;
-  border-top: 2px solid transparent;
+  border: 3px solid #ffffff55;
+  border-top-color: #fff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
 
 .retry-btn {
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  padding: 0.8rem 1.8rem;
+  background: var(--btn-secondary);
   color: white;
-  border: none;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin: 0 auto;
+  margin: 2rem auto 0;
   display: block;
 }
 
 .retry-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+  background-color: var(--btn-secondary-hover);
+  border-color: var(--border-color-hover);
 }
 
-/* Animations */
+/* animations */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
@@ -172,11 +160,213 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  to { transform: rotate(360deg); }
 }
 
-/* Responsive Design */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/*  result pg styles  */
+
+.results-container {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.results-header {
+  margin-bottom: 2.5rem;
+}
+
+.results-subtitle {
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 0;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin: 3rem 0 1.5rem;
+}
+
+.results-card {
+  background-color: var(--secondary-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.summary-card {
+  background-color: var(--card-bg);
+}
+
+.summary-card h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.summary-card p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 1.1rem;
+}
+
+.card-subheader {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.strengths-growth-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.strengths-growth-grid ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.strengths-growth-grid li {
+  margin-bottom: 0.7rem;
+  line-height: 1.5;
+}
+
+.careers-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.career-card-detailed {
+  transition: all 0.3s ease;
+}
+
+.career-card-detailed:hover {
+  border-color: var(--accent-secondary);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px #00000030;
+}
+
+.career-title-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.career-title-header h4 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.match-score-container {
+  background-color: var(--primary-bg);
+  border-radius: 20px;
+  padding: 0.3rem;
+  width: 120px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.match-score-container span {
+  position: relative;
+  z-index: 2;
+}
+
+.match-score-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-tertiary), var(--accent-secondary));
+  border-radius: 20px;
+  z-index: 1;
+}
+
+.details-section {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.details-section h5 {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 0 0 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.details-section ul, .details-section p {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+  color: var(--text-secondary);
+}
+.details-section li {
+  margin-bottom: 0.5rem;
+}
+.job-outlook {
+    font-style: italic;
+}
+
+
+.pros-cons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 1.5rem 0;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.learning-path {
+  background-color: var(--info-bg);
+  border: 1px solid var(--info);
+  color: var(--text-primary);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+}
+
+.learning-path p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+/* helper icon colors */
+.icon-green { color: var(--success); }
+.icon-red { color: var(--error); }
+.icon-blue { color: var(--accent-secondary); }
+.icon-yellow { color: var(--warning); }
+
+
 @media (max-width: 768px) {
   .assessment-container {
     margin: 1rem;
@@ -187,11 +377,13 @@
   .success-title {
     font-size: 1.8rem;
   }
-  
-  .form-input,
-  .form-select,
-  .submit-btn,
-  .retry-btn {
-    padding: 0.8rem;
+
+  .strengths-growth-grid, .pros-cons-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .career-title-header {
+    gap: 0.5rem;
   }
 }
