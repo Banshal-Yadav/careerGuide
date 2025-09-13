@@ -1,11 +1,18 @@
 import './Navbar.css'
+// importing link for navigation
+import { Link, useNavigate } from 'react-router-dom';
 
 function Navbar() {
+    const navigate = useNavigate();
     return (
         <nav className='navbar'>
-            <div id='logo'>Logo</div>
-            <button  id='analysis_btn'> Analysis</button>
-            <button id='profile_btn'>Profile</button>
+            <Link to="/" id='logo'>SkillSync</Link>
+            <div className='nav-buttons'>
+                <button onClick={() => navigate("/AssessmentPg")} id='analysis_btn'>analysis</button>
+                <Link to="/profile" className='profile_btn_link'>
+                    <button id='profile_btn'>profile</button>
+                </Link>
+            </div>
         </nav>
     );
 }

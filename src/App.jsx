@@ -12,19 +12,20 @@ import { useAuth } from './hooks/useAuth.js';
 import Assessment from './components/Assessment.jsx'; 
 import { Routes, Route } from "react-router-dom";
 import AssessmentPg from './components/AssessmentPg.jsx';
+import Profile from './components/Profile.jsx';
 
 function App() {
   const { user, loading } = useAuth();
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div>loading...</div>;
 
   if (!user) {
     return (
       <div>
         <Navbar />
         <div style={{ padding: '2rem', textAlign: 'center' }}>
-          <h1>Welcome to Career Advisor</h1>
-          <p>Please sign in to continue</p>
+          <h1>welcome to career advisor</h1>
+          <p>please sign in to continue</p>
           <Auth />
         </div>
       </div>
@@ -54,7 +55,14 @@ function App() {
         <AssessmentPg/>
         <Footer />
         </>
-        } />
+      } />
+      <Route path="/profile" element={
+        <>
+        <Navbar />
+        <Profile />
+        <Footer />
+        </>
+      } />
     </Routes>
   );
 }

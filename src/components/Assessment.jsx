@@ -1,19 +1,56 @@
 import React, { useState } from 'react';
-import { useAuth } from '../hooks/useAuth.js';
+import { useAuth } from '../hooks/useAuth';
 import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../firebase/config.js';
+import { db } from '../firebase/config';
 import './Assessment.css';
 
-// Local processing and AI service
-import { processSkillsLocally, getRelevantCareers } from '../data/skillsDatabase.js';
-import { getAiSkillAnalysis } from '../Services/geminiService.js';
+// local processing and AI service
+import { processSkillsLocally, getRelevantCareers, skillsData } from '../data/skillsDatabase';
+import { getAiSkillAnalysis } from '../Services/geminiService';
 
-// Icons for the new results page
-import { CheckCircle2, XCircle, Target, TrendingUp, Lightbulb, Briefcase, BarChartHorizontal } from 'lucide-react';
+// icons for the new results page
+import { CheckCircle2, XCircle, Target, TrendingUp, Lightbulb, Briefcase, BarChartHorizontal, Zap } from 'lucide-react';
 
-// --- A new, advanced component to display the results ---
+
+//  for radial progress bar
+const RadialProgressBar = ({ score }) => {
+  const radius = 50;
+  const stroke = 8;
+  const normalizedRadius = radius - stroke * 2;
+  const circumference = normalizedRadius * 2 * Math.PI;
+  const strokeDashoffset = circumference - (score / 100) * circumference;
+
+  return (
+    <div className="radial-progress-bar">
+      <svg height={radius * 2} width={radius * 2}>
+        <circle
+          className="progress-ring-bg"
+          strokeWidth={stroke}
+          r={normalizedRadius}
+          cx={radius}
+          cy={radius}
+        />
+        <circle
+          className="progress-ring-fg"
+          strokeWidth={stroke}
+          strokeDasharray={`${circumference} ${circumference}`}
+          style={{ strokeDashoffset }}
+          r={normalizedRadius}
+          cx={radius}
+          cy={radius}
+        />
+      </svg>
+      <span className="progress-text">{score}%</span>
+    </div>
+  );
+};
+
+
+// main component to display the results 
 const AnalysisResults = ({ analysis, onRetry }) => {
-  if (!analysis) return null;
+  const [activeCareerTab, setActiveCareerTab] = useState(0);
+
+  if (!analysis || !analysis.careerAnalysis) return null;
 
   return (
     <div className="results-container">
@@ -22,67 +59,75 @@ const AnalysisResults = ({ analysis, onRetry }) => {
         <p className="results-subtitle">Powered by Gemini 2.5 Flash</p>
       </div>
       
-      {/* AI-Generated Summary */}
       <div className="results-card summary-card">
-        <h3>Executive Summary</h3>
+        <h3><Zap size={24} className="icon-yellow" /> Executive Summary</h3>
         <p>{analysis.summary}</p>
       </div>
 
-      {/* Strengths and Growth Areas */}
       <div className="strengths-growth-grid">
         <div className="results-card">
           <h4 className="card-subheader"><Target size={20} className="icon-green" /> Your Strengths</h4>
-          <ul>
-            {analysis.strengths?.map((strength, i) => <li key={i}>{strength}</li>)}
-          </ul>
+          <ul>{analysis.strengths?.map((s, i) => <li key={i}>{s}</li>)}</ul>
         </div>
         <div className="results-card">
           <h4 className="card-subheader"><TrendingUp size={20} className="icon-blue" /> Growth Areas</h4>
-          <ul>
-            {analysis.growthAreas?.map((area, i) => <li key={i}>{area}</li>)}
-          </ul>
+          <ul>{analysis.growthAreas?.map((g, i) => <li key={i}>{g}</li>)}</ul>
         </div>
       </div>
 
-      {/* Detailed Career Breakdown */}
       <h3 className="section-title">Top Career Recommendations</h3>
-      <div className="careers-breakdown">
-        {analysis.careerAnalysis?.map((career) => (
-          <div key={career.title} className="results-card career-card-detailed">
-            <div className="career-title-header">
-              <h4><Briefcase size={22} /> {career.title}</h4>
-              <div className="match-score-container">
-                <div className="match-score-bar" style={{width: `${career.matchScore}%`}}></div>
-                <span>{career.matchScore}% Match</span>
-              </div>
-            </div>
-
-            <div className="details-section">
-              <h5><BarChartHorizontal size={16} /> Job Outlook</h5>
-              <p className="job-outlook">{career.jobOutlook}</p>
-            </div>
-
-            <div className="pros-cons-grid">
-              <div>
-                <h5><CheckCircle2 size={16} className="icon-green" /> Pros</h5>
-                <ul>{career.pros?.map((pro, i) => <li key={i}>{pro}</li>)}</ul>
-              </div>
-              <div>
-                <h5><XCircle size={16} className="icon-red" /> Cons</h5>
-                <ul>{career.cons?.map((con, i) => <li key={i}>{con}</li>)}</ul>
-              </div>
-            </div>
-            
-            <div className="details-section">
-              <h5><Target size={16} /> Skill Gaps</h5>
-              <ul>{career.skillGaps?.map((skill, i) => <li key={i}>{skill}</li>)}</ul>
-            </div>
-            
-            <div className="learning-path">
-              <p><Lightbulb size={18} className="icon-yellow" /> <strong>Your Next Step:</strong> {career.suggestedLearningPath}</p>
-            </div>
-          </div>
+      
+      {/* interactive tabs */}
+      <div className="career-tabs">
+        {analysis.careerAnalysis.map((career, index) => (
+          <button
+            key={index}
+            className={`tab-btn ${index === activeCareerTab ? 'active' : ''}`}
+            onClick={() => setActiveCareerTab(index)}
+          >
+            {career.title}
+          </button>
         ))}
+      </div>
+      
+      {/* Career Content */}
+      <div className="career-content">
+        {analysis.careerAnalysis.map((career, index) => {
+          if (index !== activeCareerTab) return null;
+          return (
+            <div key={career.title} className="results-card career-card-detailed active-career">
+              <div className="career-title-header">
+                 <h4><Briefcase size={28} /> {career.title}</h4>
+                 <RadialProgressBar score={career.matchScore} />
+              </div>
+
+              <div className="details-section">
+                <h5><BarChartHorizontal size={16} /> Job Outlook</h5>
+                <p className="job-outlook">{career.jobOutlook}</p>
+              </div>
+
+              <div className="pros-cons-grid">
+                <div>
+                  <h5><CheckCircle2 size={16} className="icon-green" /> Why It's a Great Fit</h5>
+                  <ul>{career.pros?.map((p, i) => <li key={i}>{p}</li>)}</ul>
+                </div>
+                <div>
+                  <h5><XCircle size={16} className="icon-red" /> Potential Challenges</h5>
+                  <ul>{career.cons?.map((c, i) => <li key={i}>{c}</li>)}</ul>
+                </div>
+              </div>
+              
+              <div className="details-section">
+                <h5><Target size={16} /> Recommended Skills to Learn</h5>
+                <ul className="skill-gaps-list">{career.skillGaps?.map((s, i) => <li key={i}>{s}</li>)}</ul>
+              </div>
+              
+              <div className="learning-path">
+                <p><Lightbulb size={80} className="icon-yellow" /> <strong>Your First Step:</strong> {career.suggestedLearningPath}</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
 
       <button className="retry-btn" onClick={onRetry}>
@@ -92,6 +137,7 @@ const AnalysisResults = ({ analysis, onRetry }) => {
   );
 };
 
+// main assessment component 
 const Assessment = () => {
   const { user } = useAuth();
   const [skills, setSkills] = useState('');
@@ -100,6 +146,21 @@ const Assessment = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [aiAnalysis, setAiAnalysis] = useState(null);
+
+  // suggested skills for the chips
+  const suggestedSkills = [
+    ...skillsData.technical.slice(0, 6),
+    ...skillsData.soft.slice(0, 4),
+    ...skillsData.industry.slice(0, 4)
+  ].map(skill => skill.name);
+
+  // handlers
+  const handleSkillChipClick = (skillToAdd) => {
+    const currentSkills = skills.split(',').map(s => s.trim()).filter(Boolean);
+    if (!currentSkills.includes(skillToAdd)) {
+      setSkills(currentSkills.length > 0 ? `${skills}, ${skillToAdd}` : skillToAdd);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -119,7 +180,6 @@ const Assessment = () => {
         return;
       }
       const relevantCareers = getRelevantCareers(matchedSkills.map(s => s.id));
-
       const analysisResult = await getAiSkillAnalysis(matchedSkills, relevantCareers, interests, education);
       
       if (analysisResult.error) {
@@ -145,7 +205,7 @@ const Assessment = () => {
       });
 
     } catch (err) {
-      setError('An unexpected error occurred during the process. Please check your connection and try again.');
+      setError('An unexpected error occurred. Please check your connection and try again.');
       console.error('Error during assessment process:', err);
     }
 
@@ -169,6 +229,7 @@ const Assessment = () => {
     );
   }
 
+  // RENDER FORM
   return (
     <div className="assessment-container">
       <h2 className="assessment-title">Your Career Assessment</h2>
@@ -182,10 +243,22 @@ const Assessment = () => {
           <input
             type="text"
             className="form-input"
-            placeholder="Separate skills with a comma, e.g., JavaScript, Python"
+            placeholder="Type your skills or select from the options below"
             value={skills}
             onChange={(e) => setSkills(e.target.value)}
           />
+          <div className="skill-chips-container">
+            {suggestedSkills.map(skill => (
+              <button
+                type="button"
+                key={skill}
+                className="skill-chip"
+                onClick={() => handleSkillChipClick(skill)}
+              >
+                {skill}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="form-group">

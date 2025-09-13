@@ -9,11 +9,24 @@
     border-bottom-width: 0.5px;
     display: flex;
     justify-content:space-between;
+    align-items: center;
     gap: 20px;
 }
 
-#profile_btn { 
-    width: 200px;
+#logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+#profile_btn, #analysis_btn { 
+    padding: 0.6rem 1.5rem;
     min-width: 80px;
     background-color: white;
     color: black;
@@ -21,24 +34,15 @@
     border-radius:  10px;
     border: 1px solid gray;
     cursor: pointer;
+    font-size: 1rem;
 }
 
 #analysis_btn {
-    width: 250px;
-    min-width: 80px;
-    margin-left: 75%;
     background-color: var(--primary-bg);
     color: white;
-    font-weight: bold;
-    border-radius:  12px;
-    border: 1px solid gray;
-    cursor: pointer;
 }
 
-#logo {
-    font-size: 1.8rem;
-    font-weight: bold;
+/* to make the link wrapper behave correctly */
+.profile_btn_link {
+    text-decoration: none;
 }
-
-
-

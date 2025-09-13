@@ -68,7 +68,7 @@ export const getAiSkillAnalysis = async (matchedSkills, relevantCareers, interes
     return JSON.parse(responseText);
   } catch (error) {
     console.error("Error calling Gemini API:", error);
-    // Provide a fallback error structure
+    // provide a fallback error structure
     return {
       error: true,
       message: "There was an issue communicating with the AI. Please try again later."
