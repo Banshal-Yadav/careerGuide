@@ -34,7 +34,7 @@
   --subtitle: hsla(0, 0%, 80%);
   
   /* Accent Colors */
-  --accent-primary: hsla(245, 70%, 65%); /* Purple for AI theme */
+  --accent-primary: grey; /* Purple for AI theme */
   --accent-secondary: hsla(200, 85%, 60%); /* Blue for tech feel */
   --accent-tertiary: hsla(160, 60%, 55%); /* Teal for success */
   
