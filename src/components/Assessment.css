@@ -161,6 +161,7 @@
   animation: spin 1s linear infinite;
 }
 
+
 .retry-btn {
   padding: 0.8rem 1.8rem;
   background: var(--btn-secondary);
