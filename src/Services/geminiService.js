@@ -13,7 +13,10 @@ export const getAiSkillAnalysis = async (matchedSkills, relevantCareers, interes
 
   // a more sophisticated and detailed instruction prompt for Gemini
   const prompt = `
-    You are an expert career advisor with 15 years of experience coaching students and professionals. Your advice is realistic, insightful, and encouraging. Analyze the user data below to provide a personalized career roadmap. Avoid making huge leaps in logic (e.g., if a user only knows 'javascript', don't immediately suggest a highly advanced backend role without context).
+    You are an expert career advisor with 15 years of experience coaching students and professionals. 
+    Your advice is realistic, insightful, and encouraging. Analyze the user data below to provide a personalized 
+    career roadmap. Avoid making huge leaps in logic (e.g., if a user only knows 'javascript', don't immediately 
+    suggest a highly advanced backend role without context).
 
     **User Profile:**
     - Education Level: "${education}"
