@@ -1,22 +1,21 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// get API key from .env
+// get api key from .env
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(apiKey);
 
-// gets a detailed career analysis from the Gemini model.
+// gets a detailed career analysis from the gemini model.
 export const getAiSkillAnalysis = async (matchedSkills, relevantCareers, interests, education) => {
   const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-flash",
+    model: "gemini-1.5-flash",
     generationConfig: { responseMimeType: "application/json" },
   });
 
-  // a more sophisticated and detailed instruction prompt for Gemini
+  // prompt for the gemini
   const prompt = `
-    You are an expert career advisor with 15 years of experience coaching students and professionals. 
+    You are an expert career advisor with 15 years of experience coaching students and professionals in India. 
     Your advice is realistic, insightful, and encouraging. Analyze the user data below to provide a personalized 
-    career roadmap. Avoid making huge leaps in logic (e.g., if a user only knows 'javascript', don't immediately 
-    suggest a highly advanced backend role without context).
+    career roadmap.
 
     **User Profile:**
     - Education Level: "${education}"
@@ -54,7 +53,15 @@ export const getAiSkillAnalysis = async (matchedSkills, relevantCareers, interes
             "Another crucial skill to develop."
           ],
           "suggestedLearningPath": "A concrete, actionable first step. For example: 'Start with a foundational Python for data science course on Coursera or freeCodeCamp.'",
-          "jobOutlook": "A brief, one-sentence overview of the job market for this role (e.g., 'High demand with steady growth expected over the next 5 years.')"
+          "jobOutlook": "A brief, one-sentence overview of the job market for this role (e.g., 'High demand with steady growth expected over the next 5 years.')",
+          
+          // ---- new fields added below ----
+          "dayInTheLife": "A brief paragraph describing the typical daily tasks and responsibilities for this role.",
+          "salaryRange": "An estimated yearly salary range in INR (e.g., '₹4,00,000 - ₹8,00,000') for an entry-level position in India.",
+          "suggestedCertifications": [
+            "A relevant and popular certification for this career.",
+            "Another useful certification."
+          ]
         }
       ]
     }
@@ -71,7 +78,6 @@ export const getAiSkillAnalysis = async (matchedSkills, relevantCareers, interes
     return JSON.parse(responseText);
   } catch (error) {
     console.error("Error calling Gemini API:", error);
-    // provide a fallback error structure
     return {
       error: true,
       message: "There was an issue communicating with the AI. Please try again later."
