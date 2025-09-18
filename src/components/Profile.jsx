@@ -26,8 +26,14 @@ const AssessmentCard = ({ assessment }) => {
         <div className="assessment-card-body">
           <div className="card-section"><h5 className="section-title"><Zap size={18} /> Executive Summary</h5><p>{assessment.aiSummary || 'No summary available for this assessment.'}</p></div>
           <div className="strengths-growth-grid-profile">
-            <div className="card-section"><h5 className="section-title"><Target size={18} /> Strengths</h5><ul className="custom-list">{assessment.aiStrengths?.length > 0 ? assessment.aiStrengths.map((strength, i) => <li key={i}>{strength}</li>) : <li>No strengths analysis available.</li>}</ul></div>
-            <div className="card-section"><h5 className="section-title"><TrendingUp size={18} /> Growth Areas</h5><ul className="custom-list">{assessment.aiGrowthAreas?.length > 0 ? assessment.aiGrowthAreas.map((area, i) => <li key={i}>{area}</li>) : <li>No growth area analysis available.</li>}</ul></div>
+            <div className="card-section">
+              <h5 className="section-title"><Target size={18} /> Strengths</h5>
+              <ul className="custom-list">{assessment.aiStrengths?.length > 0 ? assessment.aiStrengths.map((strength, i) => <li key={i}>{strength}</li>) : <li>No strengths analysis available.</li>}</ul>
+            </div>
+            <div className="card-section">
+              <h5 className="section-title"><TrendingUp size={18} /> Growth Areas</h5>
+              <ul className="custom-list">{assessment.aiGrowthAreas?.length > 0 ? assessment.aiGrowthAreas.map((area, i) => <li key={i}>{area}</li>) : <li>No growth area analysis available.</li>}</ul>
+            </div>
           </div>
           <div className="card-section">
              <h5 className="section-title"><Briefcase size={18} /> Top Career Recommendations</h5>
