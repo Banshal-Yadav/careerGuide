@@ -1,6 +1,7 @@
 import Card from './Card.jsx';
 import './Cardtab.css';
 import {Brain, MessageSquare, BarChart3, FileText} from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 function Cardtab() {
     return (
@@ -20,12 +21,13 @@ function Cardtab() {
                 title="Industry Insight"  
                 info="Stay ahead with real-time industr trends, salary data, and market analysis."
             />
-            <Card   
-                icon={FileText} 
-                title="Smart Resume Creation"  
-                info="generate ATS-optimized resumes with AI assistance"
-            />
-            
+            <Link to="/resume-builder" style={{ textDecoration: 'none' }}>
+                <Card   
+                    icon={FileText} 
+                    title="Smart Resume Creation"  
+                    info="generate ATS-optimized resumes with AI assistance"
+                />
+            </Link>
         </div>
     );
 }

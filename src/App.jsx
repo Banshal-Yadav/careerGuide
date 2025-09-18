@@ -15,6 +15,7 @@ import AssessmentPg from './components/AssessmentPg.jsx';
 import Faq from "./Card/Faq.jsx";
 import Profile from './components/Profile.jsx';
 
+
 function App() {
   const { user, loading } = useAuth();
 
@@ -50,6 +51,8 @@ function App() {
       </>
       }
       />
+
+      
 
       <Route path="/AssessmentPg" element={
         <>
