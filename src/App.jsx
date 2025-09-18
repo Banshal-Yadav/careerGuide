@@ -14,6 +14,7 @@ import { Routes, Route } from "react-router-dom";
 import AssessmentPg from './components/AssessmentPg.jsx';
 import Faq from "./Card/Faq.jsx";
 import Profile from './components/Profile.jsx';
+import ResumeBuilder from './components/Resume/ResumeBuilder.jsx';
 
 
 function App() {
@@ -51,7 +52,13 @@ function App() {
       </>
       }
       />
-
+      <Route path="/resume-builder" element={
+        <>
+          <Navbar />
+          <ResumeBuilder />
+          <Footer />
+        </>
+      } />
       
 
       <Route path="/AssessmentPg" element={
