@@ -1,6 +1,6 @@
 .stats-tab {
     margin: 0rem 0 0.5rem 0;
-    padding: 0.5rem;
+    padding: 2.5rem 0.5rem 2.5rem 0.5rem;
     display: flex;
     justify-content: center;
     gap: 20px;
