@@ -7,6 +7,17 @@
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
   border: 1px solid var(--border-color);
 }
+.resume-header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+.resume-header-actions .resume-builder-title {
+    margin-bottom: 0;
+    flex-grow: 1;
+}
 .resume-builder-title {
   text-align: center;
   color: #eee;
@@ -81,19 +92,33 @@
   cursor: pointer;
   margin-top: 1rem;
 }
+
+
+.resume-preview-wrapper {
+    background-color: var(--secondary-bg);
+    border-radius: 8px;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    height: 820px;
+    overflow: hidden;
+}
 #resume-to-download {
     background-color: #fff;
     color: #333;
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    padding: 2.5rem;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    width: 8.5in;
+    height: 11in;
+    transform-origin: top center;
+    transform: scale(0.75);
+    margin: 0;
 }
+
 .resume-preview-container {
     display: flex;
-    gap: 2rem;
-    max-width: 8.5in;
-    min-height: 11in;
-    margin: 0 auto;
+    gap: 1.5rem;
     text-align: left;
 }
 .resume-main-content, .resume-sidebar, .resume-header {
@@ -105,7 +130,7 @@
 .resume-sidebar {
     flex: 1;
     border-left: 1px solid #ddd;
-    padding-left: 2rem;
+    padding-left: 1.5rem;
 }
 .resume-header {
     padding-bottom: 1rem;
@@ -113,23 +138,22 @@
 }
 .resume-header h1 {
     margin: 0;
-    font-size: 2.5rem;
-    color: #000;
+    font-size: 2.2rem;
 }
 .resume-section {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 .resume-section-title {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
     text-transform: uppercase;
     color: #333;
     border-bottom: 1px solid #ccc;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.8rem;
 }
 .resume-summary p {
     font-size: 0.9rem;
@@ -137,22 +161,22 @@
     color: #555;
 }
 .job, .school, .project {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 .job-title, .degree, .project-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #000;
     margin: 0;
 }
 .company, .university, .project-link {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-style: italic;
     color: #555;
     margin: 0.2rem 0;
 }
 .job-date, .grad-year {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #777;
     margin: 0.2rem 0 0.5rem 0;
 }
@@ -166,7 +190,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.6rem;
     font-size: 0.9rem;
     color: #555;
 }
@@ -180,15 +204,17 @@
     color: #333;
     padding: 0.4rem 0.8rem;
     border-radius: 15px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 }
 .resume-actions {
     margin-top: 2rem;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
 }
  .resume-actions button {
     padding: 0.8rem 1.5rem;
-    margin: 0 0.5rem;
     cursor: pointer;
     border-radius: 8px;
     border: 1px solid var(--border-color);
@@ -210,5 +236,23 @@
 }
  .edit-btn {
     background-color: var(--btn-secondary);
+    color: var(--text-primary);
+}
+.back-btn {
+    padding: 0.6rem 1.2rem;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+.back-btn:hover {
+    background-color: var(--secondary-bg);
     color: var(--text-primary);
 }

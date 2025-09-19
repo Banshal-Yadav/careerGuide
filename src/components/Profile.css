@@ -9,23 +9,137 @@
   animation: fadeIn 0.6s ease-out;
 }
 
-.profile-title {
-  text-align: center;
-  color: #eee;
-  margin-bottom: 0.5rem;
-  font-size: 2.5rem;
-  font-weight: 700;
-  background: var(--gradient-subtitle);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* these are the new styles for the dashboard i created */
+.profile-dashboard {
+  background-color: var(--secondary-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
 }
 
-.profile-subtitle {
-  text-align: center;
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.dashboard-name {
+  margin: 0;
+  font-size: 1.8rem;
+  color: var(--text-primary);
+}
+
+.dashboard-subtitle {
+  margin: 0.2rem 0 0 0;
   color: var(--text-muted);
-  margin-top: 0;
-  margin-bottom: 2.5rem;
-  font-size: 1.1rem;
+}
+
+.dashboard-btn {
+  padding: 0.8rem 1.5rem;
+  background: var(--btn-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.dashboard-btn:hover {
+  background-color: var(--btn-secondary-hover);
+  border-color: var(--border-color-hover);
+}
+
+/* New Resume Card Styles */
+.resume-card, .no-resume-card {
+    background-color: var(--secondary-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 1.5rem 2rem;
+    margin-bottom: 2.5rem;
+    text-align: left;
+}
+
+.no-resume-card {
+    text-align: center;
+    background: linear-gradient(135deg, hsla(245, 70%, 25%, 0.3), hsla(0, 0%, 12%, 0.3));
+    border-style: dashed;
+}
+
+.no-resume-card h4 {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+}
+.no-resume-card p {
+    color: var(--text-secondary);
+    margin: 0 0 1.5rem 0;
+}
+
+.resume-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.resume-card-title {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+.resume-card-subtitle {
+    margin: 0.2rem 0 0 0;
+    color: var(--text-muted);
+}
+
+.resume-card-body {
+    padding: 1.5rem 0;
+}
+
+.resume-summary-snippet {
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.resume-card-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.edit-resume-btn {
+    background-color: var(--accent-secondary);
+    color: white;
+    border-color: var(--accent-secondary);
+}
+.download-resume-btn {
+    background-color: var(--btn-secondary);
+    color: var(--text-primary);
+}
+
+
+.section-heading {
+  text-align: left;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .assessments-list {
