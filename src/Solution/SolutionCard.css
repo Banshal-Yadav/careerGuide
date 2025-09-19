@@ -1,17 +1,19 @@
 .solution-card-container {
     border-radius: 2rem;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     min-width: fit-content;
-    margin: 0 20% 0 20%;
+    margin: 0 15% 0 15%;
     padding: 0.5rem 2.5rem 2rem 2.5rem;
+    display: flex;
+    gap: 2rem;
 }
 
 .solution-para {
     text-align: left;
-    margin: 1.5rem 0.2rem 2rem 0.2rem;
+    margin: 0rem 20rem;
+    padding: 0rem 0rem 2rem 0rem;
     color: var(--text-secondary);
     font-size: 16px;
-    padding: 0 1rem 0 1rem;
 }
 
 .solution-point {
@@ -20,9 +22,10 @@
     padding: 0.2rem 1.5rem;
     border-radius: 8px;
     color: var(--text-secondary);
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: 20px;
     margin: 8px;
+    padding: 2rem;
 }
 .solution-point:hover {
     background-color: var(--card-bg);
