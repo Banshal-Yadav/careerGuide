@@ -5,13 +5,12 @@
   background-color: var(--primary-bg);
   border-radius: 16px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-  /* border: 1px solid var(--border-color); */
 }
 .resume-header-actions {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     gap: 1rem;
 }
 .resume-header-actions .resume-builder-title {
@@ -21,12 +20,39 @@
 .resume-builder-title {
   text-align: center;
   color: #eee;
-  margin-bottom: 2rem;
   font-size: 2.5rem;
   font-weight: 700;
   background: var(--gradient-subtitle);
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+.dummy-data-controls {
+    text-align: left;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-muted);
+}
+.dummy-data-select {
+    padding: 0.5rem 0.8rem;
+    background-color: var(--secondary-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.dummy-data-select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+}
+.feedback-message {
+    color: var(--success); 
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 1rem;
+    margin-top: -1rem; 
 }
 .resume-form {
   display: flex;
@@ -92,8 +118,6 @@
   cursor: pointer;
   margin-top: 1rem;
 }
-
-
 .resume-preview-wrapper {
     background-color: var(--secondary-bg);
     border-radius: 8px;
@@ -115,7 +139,6 @@
     transform: scale(0.75);
     margin: 0;
 }
-
 .resume-preview-container {
     display: flex;
     gap: 1.5rem;
@@ -194,12 +217,12 @@
     font-size: 0.9rem;
     color: #555;
 }
-.strength-chips {
+.skill-chips {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
 }
-.strength-chip {
+.skill-chip {
     background-color: #f0f0f0;
     color: #333;
     padding: 0.4rem 0.8rem;
@@ -230,9 +253,9 @@
     border-color: var(--success);
 }
 .share-btn {
-    background-color: var(--accent-secondary);
+    background-color: var(--accent-primary);
     color: white;
-    border-color: var(--accent-secondary);
+    border-color: var(--accent-primary);
 }
  .edit-btn {
     background-color: var(--btn-secondary);

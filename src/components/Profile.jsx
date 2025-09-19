@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../hooks/useAuth';
-// added updateDoc and deleteField for the delete functionality
-import { doc, getDoc, updateDoc, deleteField } from 'firebase/firestore'; 
+import { doc, getDoc, updateDoc, arrayRemove } from 'firebase/firestore'; 
 import { db } from '../firebase/config';
 import './Profile.css';
-// added Trash2 icon for the delete button
 import { ChevronDown, ChevronUp, Target, TrendingUp, Briefcase, Zap, IndianRupee, User, Edit, FileText, Download, Trash2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const AssessmentCard = ({ assessment }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -58,29 +56,27 @@ const AssessmentCard = ({ assessment }) => {
   );
 };
 
-// added handleDelete as a prop
-const ResumeCard = ({ resume, handleDelete }) => {
+
+const ResumeCard = ({ resume, onDelete }) => {
+    const navigate = useNavigate();
+
     return (
         <div className="resume-card">
             <div className="resume-card-header">
                 <FileText size={40} />
                 <div>
                     <h3 className="resume-card-title">{resume.fullName}'s Resume</h3>
-                    <p className="resume-card-subtitle">ready to be shared with recruiters</p>
+                    <p className="resume-card-subtitle">Last updated: {new Date(resume.lastUpdated).toLocaleDateString()}</p>
                 </div>
             </div>
-            <div className="resume-card-body">
-                <p className="resume-summary-snippet">"{resume.summary.substring(0, 150)}..."</p>
-            </div>
             <div className="resume-card-actions">
-                <Link to="/resume-builder" state={{ edit: true }} className="dashboard-btn edit-resume-btn">
-                    <Edit size={16}/> Edit Resume
-                </Link>
-                <Link to="/resume-builder" className="dashboard-btn download-resume-btn">
+                <button onClick={() => navigate('/resume-builder', { state: { resumeId: resume.id } })} className="dashboard-btn primary-action-btn">
+                    <Edit size={16}/> Edit
+                </button>
+                <button onClick={() => navigate('/resume-builder', { state: { resumeId: resume.id, isPreview: true } })} className="dashboard-btn">
                     <Download size={16}/> View & Download
-                </Link>
-                {/* new delete button */}
-                <button onClick={handleDelete} className="dashboard-btn delete-resume-btn">
+                </button>
+                <button onClick={() => onDelete(resume.id)} className="dashboard-btn delete-resume-btn">
                     <Trash2 size={16}/> Delete
                 </button>
             </div>
@@ -91,6 +87,7 @@ const ResumeCard = ({ resume, handleDelete }) => {
 
 const Profile = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -105,9 +102,12 @@ const Profile = () => {
           if (data.assessments && Array.isArray(data.assessments)) {
             data.assessments.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
           }
+           if (!data.resumes) {
+            data.resumes = [];
+          }
           setProfileData(data);
         } else {
-          setProfileData({ assessments: [] });
+          setProfileData({ assessments: [], resumes: [] });
         }
         setLoading(false);
       };
@@ -115,30 +115,34 @@ const Profile = () => {
     }
   }, [user]);
 
-  // function to handle resume deletion
-  const handleDeleteResume = async () => {
-    if (!window.confirm("are you sure you want to permanently delete your resume?")) {
+  const handleDeleteResume = async (resumeId) => {
+    if (!window.confirm("are you sure you want to permanently delete this resume?")) {
         return;
     }
 
     const profileRef = doc(db, 'profiles', user.uid);
+    const resumeToDelete = profileData.resumes.find(r => r.id === resumeId);
+
     try {
-        // remove the 'resume' field from the document in firestore
         await updateDoc(profileRef, {
-            resume: deleteField()
+            resumes: arrayRemove(resumeToDelete)
         });
-        // update the local state to immediately reflect the change
-        setProfileData(prevData => ({ ...prevData, resume: null }));
+        setProfileData(prevData => ({
+            ...prevData,
+            resumes: prevData.resumes.filter(r => r.id !== resumeId)
+        }));
     } catch (error) {
         console.error("error deleting resume:", error);
         alert("failed to delete resume, please try again");
     }
   };
 
-  if (loading) return <div className="profile-container"><p>loading profile...</p></div>;
+  if (loading) return <div className="profile-container"><p>loading profile</p></div>;
 
-  const hasAssessments = profileData && profileData.assessments && profileData.assessments.length > 0;
-  const hasResume = profileData && profileData.resume;
+  const hasAssessments = profileData?.assessments?.length > 0;
+  const hasResumes = profileData?.resumes?.length > 0;
+  const canCreateResume = (profileData?.resumes?.length || 0) < 3;
+
 
   return (
     <div className="profile-container">
@@ -146,22 +150,32 @@ const Profile = () => {
         <div className="dashboard-header">
           <User size={40} />
           <div>
-            <h2 className="dashboard-name">{profileData?.resume?.fullName || user.email}</h2>
+            <h2 className="dashboard-name">{user.email}</h2>
             <p className="dashboard-subtitle">welcome to your personal dashboard</p>
           </div>
         </div>
       </div>
-
-      {hasResume ? (
-        <ResumeCard resume={profileData.resume} handleDelete={handleDeleteResume} />
-      ) : (
-        <div className="no-resume-card">
-            <h4>Create Your Professional Resume</h4>
-            <p>a great resume is the first step towards landing your dream job</p>
-            <Link to="/resume-builder" className="dashboard-btn">
-                <Edit size={16}/> Create Your Resume
-            </Link>
+      
+      <div className="section-header">
+        <h3 className="section-heading">Your Resumes</h3>
+        <button 
+            onClick={() => navigate('/resume-builder', { state: { isNew: true } })} 
+            className="dashboard-btn primary-action-btn"
+            disabled={!canCreateResume}
+            title={canCreateResume ? "create a new resume" : "you have reached the maximum of 3 resumes"}
+        >
+            <Edit size={16}/> Create New Resume
+        </button>
+      </div>
+      
+      {hasResumes ? (
+        <div className="resumes-list">
+          {profileData.resumes.map(resume => (
+            <ResumeCard key={resume.id} resume={resume} onDelete={handleDeleteResume} />
+          ))}
         </div>
+      ) : (
+        <p>you haven't created any resumes yet, get started by clicking the button above</p>
       )}
 
       <h3 className="section-heading">Your Recent Assessments</h3>

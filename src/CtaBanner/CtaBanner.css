@@ -1,76 +1,98 @@
-.cta-banner-wrapper {
-    max-width: 900px;
-    margin: 2rem auto 0 auto;
-    display: flex;
+
+.cta-banner-section {
+    padding: 5rem 0;
+    margin-top: 3rem;
     background-color: var(--secondary-bg);
-    border-radius: 16px;
+    background-image: radial-gradient(var(--border-color) 1px, transparent 0);
+    background-size: 20px 20px;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cta-banner-wrapper {
+    max-width: 1150px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    border-radius: 18px;
     overflow: hidden;
     border: 1px solid var(--border-color);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-    
+    box-shadow: 0 10px 40px var(--shadow-heavy); 
+    background-color: var(--primary-bg);
 }
 
 .cta-image-column {
-    flex-basis: 40%;
+    flex-basis: 45%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #0c0c1c; /* Dark background for the image part */
 }
 
 .cta-image-column img {
     width: 100%;
-    height: auto;
+    height: auto; 
     object-fit: cover;
+    opacity: 0.8; 
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
 }
 
 .cta-text-column {
-    flex-basis: 60%;
-    padding: 2.5rem 3rem;
+    flex-basis: 55%;
+    padding: 3rem 4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #0f172a; /* The dark blue slate background */
+    text-align: left; 
 }
 
 .cta-title {
-    font-size: 2.2rem;
+    font-size: 2.8rem; 
     font-weight: 700;
     line-height: 1.2;
     margin: 0 0 1rem 0;
     color: var(--text-primary);
 }
 
+.cta-title span {
+    background: var(--gradient-accent-title-one);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .cta-subtitle {
-    font-size: 1rem;
+    font-size: 1.1rem; 
     color: var(--text-secondary);
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 2rem 0; 
+    max-width: 500px; 
 }
 
 .cta-button {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     border-radius: 8px;
     cursor: pointer;
-    background-color: var(--accent-secondary);
+    background: var(--accent-primary);
     color: white;
     border: none;
     transition: all 0.3s ease;
-    align-self: flex-start; 
+    align-self: flex-start;
+    box-shadow: 0 4px 15px hsla(0, 0%, 82%, 0.2);
 }
 
 .cta-button:hover {
-    background-color: hsl(200, 85%, 70%);
-    transform: translateY(-2px);
+    background: var(--accent-primary) ;
+    transform: translateY(-3px); 
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .cta-banner-wrapper {
-        flex-direction: column;
+        flex-direction: column-reverse; /* image will be on top */
     }
     .cta-text-column {
-        padding: 2rem;
+        padding: 2.5rem;
         align-items: center;
         text-align: center;
     }
