@@ -1,7 +1,10 @@
+.faq-parent {
+    border-top: 1px solid rgb(53, 53, 53);
+}
 .faq-container {
     padding: 1rem;
     max-width: 900px;
-    margin: 4rem auto;
+    margin: 1rem auto;
     
 }
 

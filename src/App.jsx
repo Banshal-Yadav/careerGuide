@@ -17,6 +17,7 @@ import Profile from './components/Profile.jsx';
 import ResumeBuilder from './components/Resume/ResumeBuilder.jsx';
 
 
+
 function App() {
   const { user, loading } = useAuth();
 
@@ -48,6 +49,7 @@ function App() {
         <StatsContainer />
         <SolutionSec />
         <Feature  />
+         
         <Faq/>
         <Footer />
       </>

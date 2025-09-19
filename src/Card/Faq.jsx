@@ -51,7 +51,8 @@ const Faq = () => {
     };
 
     return (
-        <div className="faq-container">
+        <div className="faq-parent">
+          <div className="faq-container">
             <h2 className="faq-title">Frequently Asked Questions</h2>
             <div className="faq-list">
                 {faqData.map((item, index) => (
@@ -75,6 +76,7 @@ const Faq = () => {
                     </div>
                 ))}
             </div>
+        </div>
         </div>
     );
 };
