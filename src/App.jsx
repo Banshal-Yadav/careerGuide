@@ -24,7 +24,7 @@ function App() {
 
   if (!user) {
     return (
-      <div>
+      <div className="grid-background">
         <Navbar />
         <div style={{ padding: '2rem', textAlign: 'center' }}>
           <h1>welcome to career advisor</h1>
@@ -35,7 +35,8 @@ function App() {
     );
   }
   return (
-    <Routes>
+    <div className="grid-background">
+      <Routes>
       <Route
       path="/"
       element={
@@ -76,6 +77,7 @@ function App() {
         </>
       } />
     </Routes>
+    </div>
   );
 }
 
