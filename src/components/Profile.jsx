@@ -17,6 +17,13 @@ const AssessmentCard = ({ assessment }) => {
     return `${day}/${month}/${year}`;
   };
 
+  // contextual chip display for the profile page
+  const ContextualChipDisplay = ({ skill, context, type }) => (
+    <li className={`custom-list-item-${type}`}>
+      <strong>{skill}:</strong> {context}
+    </li>
+  );
+
   return (
     <div className="assessment-card">
       <div className="assessment-card-header" onClick={() => setIsExpanded(!isExpanded)}>
@@ -29,11 +36,15 @@ const AssessmentCard = ({ assessment }) => {
           <div className="strengths-growth-grid-profile">
             <div className="card-section">
               <h5 className="section-title"><Target size={18} /> Strengths</h5>
-              <ul className="custom-list">{assessment.aiStrengths?.length > 0 ? assessment.aiStrengths.map((strength, i) => <li key={i}>{strength}</li>) : <li>No strengths analysis available</li>}</ul>
+              <ul className="custom-list">
+                  {assessment.aiStrengths?.length > 0 ? assessment.aiStrengths.map((strength, i) => <ContextualChipDisplay key={i} skill={strength.skill} context={strength.context} type="strength" />) : <li>No strengths analysis available</li>}
+              </ul>
             </div>
             <div className="card-section">
               <h5 className="section-title"><TrendingUp size={18} /> Growth Areas</h5>
-              <ul className="custom-list">{assessment.aiGrowthAreas?.length > 0 ? assessment.aiGrowthAreas.map((area, i) => <li key={i}>{area}</li>) : <li>No growth area analysis available</li>}</ul>
+               <ul className="custom-list">
+                  {assessment.aiGrowthAreas?.length > 0 ? assessment.aiGrowthAreas.map((area, i) => <ContextualChipDisplay key={i} skill={area.skill} context={area.context} type="growth" />) : <li>No growth area analysis available</li>}
+              </ul>
             </div>
           </div>
           <div className="card-section">
@@ -42,7 +53,7 @@ const AssessmentCard = ({ assessment }) => {
                 {assessment.aiCareerAnalysis?.length > 0
                   ? assessment.aiCareerAnalysis.map((career, i) => (
                       <div key={i} className="career-item">
-                        <div className="career-item-header"><h6>{career.title}</h6><span className="match-score">{career.matchScore}% Match</span></div>
+                        <div className="career-item-header"><h6>{career.title}</h6><span className="match-score">{career.matchScore || 'N/A'}% Match</span></div>
                         <p className="career-fit salary-info"><IndianRupee size={14} /> {career.salaryRange || 'Not available'}</p>
                       </div>
                     ))
@@ -178,7 +189,9 @@ const Profile = () => {
         <p>you haven't created any resumes yet, get started by clicking the button above</p>
       )}
 
-      <h3 className="section-heading">Your Recent Assessments</h3>
+      <div className="section-header">
+        <h3 className="section-heading">Your Recent Assessments</h3>
+      </div>
       
       {!hasAssessments ? (
         <p>no assessments found, complete one to get started</p>

@@ -1,32 +1,47 @@
 import './SolutionCard.css';
+import { Search, Target, Route } from 'lucide-react';
+import React from 'react'; 
+
+// data for the three steps
+const solutionSteps = [
+    {
+        icon: Search,
+        title: "Analyze",
+        description: "Comprehensive skills assessment eliminates guesswork - discover your strengths beyond the 7 careers most students know."
+    },
+    {
+        icon: Target,
+        title: "Match",
+        description: "AI reveals high-demand career paths from 250+ options, focusing on roles with strong employment prospects."
+    },
+    {
+        icon: Route,
+        title: "Guide",
+        description: "Personalized roadmaps provide the 1:1 guidance that 1:15,000 counselor ratios can't deliver."
+    }
+];
 
 const SolutionCard = () => {
     return (
-       <div>
-        <p className='solution-para'> 
-                <b>Traditional</b> career counseling <b>fails</b>  because it's
-                generic and <b>outdated</b>. Our <b>AI-powered coach</b> analyzes your <b>unique</b> profile, 
-                real-time market data, and  emerging opportunities to provide <b>personalized 
-                guidance</b> that evolves with <b>YOU</b>.
-            </p>
-         <div className='solution-card-container' >
-            
-
-           <div className="solution-point">
-                <h3>1. Analyze → </h3>
-                <p>Comprehensive skills assessment eliminates the guesswork - discover your strengths beyond the 7 careers most students know</p>
-            </div> 
-           <div className="solution-point">
-                <h3>2. Match → </h3>
-                <p>AI reveals high-demand career paths from 250+ options, focusing on roles with strong employment prospects</p>
-           </div>
-            <div className='solution-point'>
-                <h3>3. Guide → </h3>
-                <p> Personalized roadmaps provide the 1:1 guidance that 1:15,000 counselor ratios can't deliver</p>
-            </div>
-            
-
-        </div>
+       <div className='solution-journey-container'>
+        {solutionSteps.map((step, index) => {
+            const Icon = step.icon;
+            return (
+                <React.Fragment key={index}>
+                    <div className="solution-step-card">
+                        <div className="solution-step-icon-wrapper">
+                            <Icon size={28} />
+                        </div>
+                        <div className="solution-step-content">
+                            <h3 className="solution-step-title">{index + 1}. {step.title}</h3>
+                            <p className="solution-step-description">{step.description}</p>
+                        </div>
+                    </div>
+                    {/* don't add a connector after the last item */}
+                    {index < solutionSteps.length - 1 && <div className="solution-step-connector" />}
+                </React.Fragment>
+            );
+        })}
        </div>
     );
 }

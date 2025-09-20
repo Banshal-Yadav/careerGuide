@@ -1,31 +1,83 @@
-.solution-card-container {
-    border-radius: 2rem;
-    /* border: 1px solid gray; */
-    min-width: fit-content;
-    /* margin: 0 15% 0 15%; */
-    padding: 0.5rem 2.5rem 2rem 2.5rem;
+.solution-journey-container {
     display: flex;
-    gap: 0.5rem;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
-.solution-para {
+.solution-step-card {
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
     text-align: left;
-    margin: 0rem 10rem;
-    padding: 0rem 0rem 2rem 0rem;
-    color: var(--text-secondary);
-    font-size: 16px;
+    flex-basis: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 180px;
 }
 
-.solution-point {
-    text-align: left;
-    /* border: 1px solid gray; */
-    padding: 0.2rem 0.5rem;
-    border-radius: 2px;
-    color: var(--text-secondary);
-    font-size: 14px;
-    font-weight: 20px;
-    margin: 8px;
+.solution-step-icon-wrapper {
+    background-color: hsla(245, 70%, 65%, 0.1);
+    color: var(--accent-primary);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--accent-primary);
 }
-.solution-point:hover {
-    background-color: var(--card-bg);
+
+.solution-step-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.3rem;
+    color: var(--text-primary);
+}
+
+.solution-step-description {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.solution-step-connector {
+    flex-grow: 1;
+    height: 2px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--border-color),
+        var(--border-color) 6px,
+        transparent 6px,
+        transparent 12px
+    );
+    margin-top: 38px;
+}
+
+@media (max-width: 768px) {
+    .solution-journey-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+    .solution-step-card {
+        width: 80%;
+        min-height: auto;
+    }
+    .solution-step-connector {
+        width: 2px;
+        height: 40px;
+        margin: 0;
+        background: repeating-linear-gradient(
+            180deg,
+            var(--border-color),
+            var(--border-color) 6px,
+            transparent 6px,
+            transparent 12px
+        );
+    }
 }
