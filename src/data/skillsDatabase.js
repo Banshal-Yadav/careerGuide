@@ -766,3 +766,14 @@ export const getRelevantCareers = (userSkillIds) => {
     .slice(0, 10);
 };
 
+/**
+ * Finds a career object by its title, attempting a case-insensitive match.
+ * @param {string} careerTitle - The title of the career to find.
+ * @returns {object | undefined} The found career object or undefined.
+ */
+export const findCareerByTitle = (careerTitle) => {
+  const normalizedTitle = careerTitle.toLowerCase().trim();
+  return careersData.find(career => 
+    career.title.toLowerCase().trim() === normalizedTitle
+  );
+};
