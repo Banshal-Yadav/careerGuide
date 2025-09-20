@@ -21,13 +21,13 @@ function Cardtab() {
                 title="Industry Insight"  
                 info="Stay ahead with real-time industr trends, salary data, and market analysis."
             />
-            <Link to="/resume-builder" style={{ textDecoration: 'none' }}>
+         
                 <Card   
                     icon={FileText} 
                     title="Smart Resume Creation"  
                     info="generate ATS-optimized resumes with AI assistance"
                 />
-            </Link>
+            
         </div>
     );
 }
