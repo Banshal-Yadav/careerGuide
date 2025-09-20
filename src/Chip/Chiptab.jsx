@@ -1,15 +1,14 @@
 import Chip from './Chip.jsx';
 import './Chiptab.css';
 
-const Chiptab = ({c1, c2, c3, c4, c5, c6}) => {
+// accept an array of chips and the click handler
+const Chiptab = ({ chips, onChipClick }) => {
     return (
         <div className='chip-tab'>
-            <Chip text={c1} />
-            <Chip text={c2} />
-            <Chip text={c3} />
-            <Chip text={c4} />
-            <Chip text={c5} />
-            <Chip text={c6} />
+            {/* map over the array to create chips dynamically */}
+            {chips.map((chipText, index) => (
+                <Chip key={index} text={chipText} onClick={onChipClick} />
+            ))}
         </div>
     );
 }

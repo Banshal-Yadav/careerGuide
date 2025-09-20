@@ -146,7 +146,7 @@ const ResumeBuilder = () => {
     const { jsPDF } = window.jspdf;
     const resumeElement = document.getElementById('resume-to-download');
     resumeElement.style.transform = 'scale(1)';
-    window.html2canvas(resumeElement, { scale: 2 }).then((canvas) => {
+    window.html2canvas(resumeElement, { scale: 1 }).then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF('p', 'mm', 'a4');
         const pdfWidth = pdf.internal.pageSize.getWidth();

@@ -19,11 +19,9 @@
 }
 .resume-builder-title {
   text-align: center;
-  color: #eee;
+  color: #a2a1a1;
   font-size: 2.5rem;
   font-weight: 700;
-  background: var(--gradient-subtitle);
-  -webkit-text-fill-color: transparent;
 }
 .dummy-data-controls {
     text-align: left;

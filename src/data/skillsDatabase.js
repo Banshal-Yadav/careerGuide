@@ -484,5 +484,6 @@ export const getRelevantCareers = (userSkillIds) => {
     })
     .filter(career => career.matchCount > 0)
     .sort((a, b) => b.matchCount - a.matchCount)
-    .slice(0, 10);
+    .slice(0, 10); 
 };
+

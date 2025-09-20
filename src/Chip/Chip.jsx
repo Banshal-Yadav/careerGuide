@@ -1,11 +1,13 @@
 import "./Chip.css";
 
-const Chip = ({text}) => {
+const Chip = ({text, onClick}) => { // add onClick prop
     return (
         <div >
-          <button className="chip-btn"> {text}</button>
+          {/* pass the text to the onClick handler */}
+          <button className="chip-btn" onClick={() => onClick(text)}> 
+            {text}
+          </button>
         </div>
-
     );
 }
 export default Chip;
