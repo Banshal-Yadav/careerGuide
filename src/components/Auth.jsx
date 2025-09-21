@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import './Auth.css'; 
+import { useNavigate } from 'react-router-dom'; 
 
 const Auth = () => {
   const { user, login, register, loginWithGoogle, logout, loading } = useAuth();
@@ -8,6 +9,7 @@ const Auth = () => {
   const [password, setPassword] = useState('');
   const [isLogin, setIsLogin] = useState(true);
   const [error, setError] = useState('');
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,6 +20,7 @@ const Auth = () => {
       } else {
         await register(email, password);
       }
+      navigate('/'); 
     } catch (error) {
       setError(error.message);
     }
@@ -26,6 +29,7 @@ const Auth = () => {
   const handleGoogleLogin = async () => {
     try {
       await loginWithGoogle();
+      navigate('/'); // 
     } catch (error) {
       setError(error.message);
     }
