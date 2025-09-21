@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
+import './Auth.css'; 
 
 const Auth = () => {
   const { user, login, register, loginWithGoogle, logout, loading } = useAuth();
@@ -30,15 +31,16 @@ const Auth = () => {
     }
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading && !user) return <div className="auth-container">Loading...</div>;
 
   return (
-    <div>
-      <h2>{isLogin ? 'Login' : 'Sign Up'}</h2>
-      {error && <p style={{color: 'red'}}>{error}</p>}
+    <div className="auth-container">
+      <h2 className="auth-title">{isLogin ? 'Login' : 'Sign Up'}</h2>
+      {error && <p className="auth-error">{error}</p>}
       
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="auth-form">
         <input
+          className="auth-input"
           type="email"
           placeholder="Email"
           value={email}
@@ -46,27 +48,28 @@ const Auth = () => {
           required
         />
         <input
+          className="auth-input"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">
+        <button type="submit" className="auth-btn">
           {isLogin ? 'Login' : 'Sign Up'}
         </button>
       </form>
       
-      <button onClick={handleGoogleLogin}>
+      <button onClick={handleGoogleLogin} className="google-btn">
         Sign in with Google
       </button>
       
-      <p>
-        {isLogin ? "Don't have an account? " : "Already have an account? "}
-        <button onClick={() => setIsLogin(!isLogin)}>
+      <div className="toggle-container">
+        {isLogin ? "Don't have an account?" : "Already have an account?"}
+        <button onClick={() => setIsLogin(!isLogin)} className="toggle-btn">
           {isLogin ? 'Sign Up' : 'Login'}
         </button>
-      </p>
+      </div>
     </div>
   );
 };
