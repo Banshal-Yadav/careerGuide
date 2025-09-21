@@ -137,25 +137,152 @@ const ResumeBuilder = () => {
     };
   }, []);
 
-  const handleDownloadPDF = () => {
+
+// src/components/Resume/ResumeBuilder.jsx
+
+// src/components/Resume/ResumeBuilder.jsx
+
+const handleDownloadPDF = () => {
     if (!scriptsLoaded) {
-        setFeedbackMessage("pdf generator is loading, please wait");
+        setFeedbackMessage("PDF generator is loading, please wait...");
         setTimeout(() => setFeedbackMessage(''), 3000);
         return;
     }
+
     const { jsPDF } = window.jspdf;
-    const resumeElement = document.getElementById('resume-to-download');
-    resumeElement.style.transform = 'scale(1)';
-    window.html2canvas(resumeElement, { scale: 1 }).then((canvas) => {
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const height = (canvas.height * pdfWidth) / canvas.width;
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, height);
-        pdf.save(`Resume-${formData.fullName || resumeData.fullName}.pdf`);
-        resumeElement.style.transform = '';
+    const doc = new jsPDF('p', 'pt', 'a4'); // Using 'pt' for points is easier for text
+    
+    // Use the correct data whether in edit or preview mode
+    const data = resumeData || formData;
+
+    // --- Helper function to handle text wrapping ---
+    const splitText = (text, maxWidth) => {
+        if (!text) return [''];
+        return doc.splitTextToSize(text, maxWidth);
+    };
+
+    // --- Start Building the PDF ---
+    let y = 40; // This is our vertical cursor. We'll increment it as we add content.
+    const margin = 40;
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const contentWidth = pageWidth - margin * 2;
+    
+    // 1. Header (Name and Contact Info)
+    doc.setFontSize(24);
+    doc.setFont('helvetica', 'bold');
+    doc.text(data.fullName, margin, y);
+    y += 30;
+
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    const contactInfo = [data.email, data.phoneNumber, data.linkedin, data.github].join(' | ');
+    doc.text(contactInfo, margin, y);
+    
+    // Add a line separator
+    y += 20;
+    doc.setDrawColor(200); // Light gray line
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 25;
+
+    // 2. Resume Summary
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Resume Summary', margin, y);
+    y += 15;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    const summaryLines = splitText(data.summary, contentWidth);
+    doc.text(summaryLines, margin, y);
+    y += summaryLines.length * 12 + 20;
+
+    // 3. Skills
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Skills', margin, y);
+    y += 15;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    const skillsLines = splitText(data.skills, contentWidth);
+    doc.text(skillsLines, margin, y);
+    y += skillsLines.length * 12 + 20;
+    
+    // 4. Work Experience (if any)
+    const hasWorkExperience = data.experience && data.experience.some(exp => exp.jobTitle && exp.jobTitle.trim() !== '');
+    if (hasWorkExperience) {
+        doc.setFontSize(12);
+        doc.setFont('helvetica', 'bold');
+        doc.text('Work Experience', margin, y);
+        y += 15;
+
+        data.experience.forEach(exp => {
+            if (exp.jobTitle) {
+                doc.setFontSize(11);
+                doc.setFont('helvetica', 'bold');
+                doc.text(exp.jobTitle, margin, y);
+                
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'italic');
+                doc.text(`${exp.company} | ${exp.startDate} - ${exp.endDate}`, margin, y + 12);
+                y += 28;
+
+                doc.setFont('helvetica', 'normal');
+                const descLines = splitText(exp.description, contentWidth - 15); // Indent bullet points
+                descLines.forEach((line, index) => {
+                    doc.text(`• ${line}`, margin + 5, y);
+                    y += 12;
+                });
+                y += 15;
+            }
+        });
+    }
+
+    // 5. Projects
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Projects', margin, y);
+    y += 15;
+
+    data.projects.forEach(proj => {
+        doc.setFontSize(11);
+        doc.setFont('helvetica', 'bold');
+        doc.text(proj.title, margin, y);
+        
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'italic');
+        doc.setTextColor(80, 80, 255); // Blue for links
+        doc.textWithLink(proj.link, margin, y + 12, { url: proj.link });
+        doc.setTextColor(0); // Reset color
+        y += 28;
+
+        doc.setFont('helvetica', 'normal');
+        const projDescLines = splitText(proj.description, contentWidth - 15);
+        projDescLines.forEach((line, index) => {
+            doc.text(`• ${line}`, margin + 5, y);
+            y += 12;
+        });
+        y += 15;
     });
-  };
+
+    // 6. Education
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Education', margin, y);
+    y += 15;
+
+    data.education.forEach(edu => {
+        doc.setFontSize(11);
+        doc.setFont('helvetica', 'bold');
+        doc.text(edu.degree, margin, y);
+        
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'normal');
+        doc.text(`${edu.university} | ${edu.gradYear}`, margin, y + 12);
+        y += 30;
+    });
+
+    // --- Save the PDF ---
+    doc.save(`Resume-${data.fullName}.pdf`);
+};
   
   const handleShare = () => {
      const textArea = document.createElement("textarea");

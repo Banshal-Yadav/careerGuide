@@ -707,7 +707,247 @@ export const careersData = [
     relatedCareers: ['government_engineer', 'project_manager'],
     averageSalary: '₹6-15 LPA',
     growthProspect: 'Medium'
-  }
+  },
+ {
+    id: 'electronics_design_engineer',
+    title: 'Electronics Design Engineer',
+    description: 'Design and develop electronic circuits, PCBs, and embedded systems for various applications.',
+    skillRequirements: [
+      { skillId: 'circuit_design', level: 'Advanced' },
+      { skillId: 'pcb_design', level: 'Advanced' },
+      { skillId: 'altium_designer', level: 'Intermediate' },
+      { skillId: 'analog_electronics', level: 'Advanced' },
+      { skillId: 'digital_electronics', level: 'Advanced' },
+      { skillId: 'spice_simulation', level: 'Intermediate' }
+    ],
+    relatedCareers: ['hardware_engineer', 'rf_engineer', 'embedded_engineer'],
+    averageSalary: '₹4-18 LPA',
+    growthProspect: 'High'
+  },
+  {
+    id: 'embedded_systems_engineer',
+    title: 'Embedded Systems Engineer',
+    description: 'Develop firmware and software for microcontroller-based systems and IoT devices.',
+    skillRequirements: [
+      { skillId: 'c_programming', level: 'Advanced' },
+      { skillId: 'cpp', level: 'Advanced' },
+      { skillId: 'microcontrollers', level: 'Advanced' },
+      { skillId: 'rtos', level: 'Intermediate' },
+      { skillId: 'embedded_c', level: 'Advanced' },
+      { skillId: 'hardware_debugging', level: 'Intermediate' }
+    ],
+    relatedCareers: ['iot_engineer', 'firmware_engineer', 'electronics_design_engineer'],
+    averageSalary: '₹3.5-16 LPA',
+    growthProspect: 'Very High'
+  },
+  {
+    id: 'rf_engineer',
+    title: 'RF/Microwave Engineer',
+    description: 'Design and optimize radio frequency circuits, antennas, and wireless communication systems.',
+    skillRequirements: [
+      { skillId: 'rf_design', level: 'Advanced' },
+      { skillId: 'antenna_design', level: 'Advanced' },
+      { skillId: 'electromagnetic_theory', level: 'Advanced' },
+      { skillId: 'hfss', level: 'Intermediate' },
+      { skillId: 'cst_studio', level: 'Intermediate' },
+      { skillId: 'network_analyzer', level: 'Intermediate' }
+    ],
+    relatedCareers: ['telecom_engineer', 'antenna_engineer', 'electronics_design_engineer'],
+    averageSalary: '₹5-22 LPA',
+    growthProspect: 'High'
+  },
+  {
+    id: 'vlsi_engineer',
+    title: 'VLSI Design Engineer',
+    description: 'Design and verify integrated circuits and semiconductor devices using advanced CAD tools.',
+    skillRequirements: [
+      { skillId: 'verilog', level: 'Advanced' },
+      { skillId: 'vhdl', level: 'Advanced' },
+      { skillId: 'cadence_tools', level: 'Advanced' },
+      { skillId: 'synopsys_tools', level: 'Advanced' },
+      { skillId: 'digital_design', level: 'Advanced' },
+      { skillId: 'verification', level: 'Intermediate' }
+    ],
+    relatedCareers: ['asic_engineer', 'fpga_engineer', 'semiconductor_engineer'],
+    averageSalary: '₹4-20 LPA',
+    growthProspect: 'Very High'
+  },
+  {
+    id: 'fpga_engineer',
+    title: 'FPGA Engineer',
+    description: 'Design and implement digital systems using Field-Programmable Gate Arrays for high-performance applications.',
+    skillRequirements: [
+      { skillId: 'verilog', level: 'Advanced' },
+      { skillId: 'vhdl', level: 'Advanced' },
+      { skillId: 'xilinx_vivado', level: 'Advanced' },
+      { skillId: 'altera_quartus', level: 'Intermediate' },
+      { skillId: 'digital_signal_processing', level: 'Intermediate' },
+      { skillId: 'timing_analysis', level: 'Intermediate' }
+    ],
+    relatedCareers: ['vlsi_engineer', 'embedded_engineer', 'digital_design_engineer'],
+    averageSalary: '₹4.5-18 LPA',
+    growthProspect: 'High'
+  },
+  {
+    id: 'power_electronics_engineer',
+    title: 'Power Electronics Engineer',
+    description: 'Design power conversion systems, motor drives, and renewable energy electronics.',
+    skillRequirements: [
+      { skillId: 'power_electronics', level: 'Advanced' },
+      { skillId: 'motor_control', level: 'Advanced' },
+      { skillId: 'matlab_simulink', level: 'Advanced' },
+      { skillId: 'power_systems', level: 'Intermediate' },
+      { skillId: 'control_systems', level: 'Advanced' },
+      { skillId: 'high_voltage_systems', level: 'Intermediate' }
+    ],
+    relatedCareers: ['electrical_engineer', 'renewable_energy_engineer', 'control_systems_engineer'],
+    averageSalary: '₹3.5-15 LPA',
+    growthProspect: 'High'
+  },
+  {
+    id: 'test_engineer',
+    title: 'Electronics Test Engineer',
+    description: 'Develop test procedures and validate electronic products for quality and compliance.',
+    skillRequirements: [
+      { skillId: 'test_automation', level: 'Advanced' },
+      { skillId: 'labview', level: 'Intermediate' },
+      { skillId: 'python', level: 'Intermediate' },
+      { skillId: 'oscilloscope', level: 'Advanced' },
+      { skillId: 'spectrum_analyzer', level: 'Intermediate' },
+      { skillId: 'quality_assurance', level: 'Advanced' }
+    ],
+    relatedCareers: ['quality_engineer', 'validation_engineer', 'production_engineer'],
+    averageSalary: '₹3-12 LPA',
+    growthProspect: 'Medium'
+  },
+  {
+    id: 'iot_engineer',
+    title: 'IoT Engineer',
+    description: 'Design and develop Internet of Things solutions combining hardware, software, and connectivity.',
+    skillRequirements: [
+      { skillId: 'iot_protocols', level: 'Advanced' },
+      { skillId: 'embedded_systems', level: 'Advanced' },
+      { skillId: 'wireless_communication', level: 'Advanced' },
+      { skillId: 'cloud_platforms', level: 'Intermediate' },
+      { skillId: 'sensor_integration', level: 'Advanced' },
+      { skillId: 'data_analytics', level: 'Intermediate' }
+    ],
+    relatedCareers: ['embedded_engineer', 'software_engineer', 'data_engineer'],
+    averageSalary: '₹4-18 LPA',
+    growthProspect: 'Very High'
+  },
+  {
+    id: 'analog_design_engineer',
+    title: 'Analog IC Design Engineer',
+    description: 'Design analog and mixed-signal integrated circuits for various applications.',
+    skillRequirements: [
+      { skillId: 'analog_ic_design', level: 'Advanced' },
+      { skillId: 'spice_simulation', level: 'Advanced' },
+      { skillId: 'layout_design', level: 'Advanced' },
+      { skillId: 'semiconductor_physics', level: 'Advanced' },
+      { skillId: 'cadence_virtuoso', level: 'Advanced' },
+      { skillId: 'circuit_analysis', level: 'Advanced' }
+    ],
+    relatedCareers: ['vlsi_engineer', 'mixed_signal_engineer', 'rf_engineer'],
+    averageSalary: '₹5-25 LPA',
+    growthProspect: 'High'
+  },
+  {
+    id: 'signal_processing_engineer',
+    title: 'Digital Signal Processing Engineer',
+    description: 'Develop algorithms and systems for processing digital signals in audio, video, and communication applications.',
+    skillRequirements: [
+      { skillId: 'dsp_algorithms', level: 'Advanced' },
+      { skillId: 'matlab', level: 'Advanced' },
+      { skillId: 'c_dsp', level: 'Advanced' },
+      { skillId: 'filter_design', level: 'Advanced' },
+      { skillId: 'fft_analysis', level: 'Advanced' },
+      { skillId: 'real_time_processing', level: 'Intermediate' }
+    ],
+    relatedCareers: ['audio_engineer', 'communication_engineer', 'embedded_engineer'],
+    averageSalary: '₹4.5-20 LPA',
+    growthProspect: 'High'
+  },
+  {
+    id: 'telecom_engineer',
+    title: 'Telecommunications Engineer',
+    description: 'Design and maintain communication networks, including cellular, fiber optic, and satellite systems.',
+    skillRequirements: [
+      { skillId: 'telecom_protocols', level: 'Advanced' },
+      { skillId: 'network_planning', level: 'Advanced' },
+      { skillId: 'rf_planning', level: 'Intermediate' },
+      { skillId: '5g_technology', level: 'Advanced' },
+      { skillId: 'fiber_optics', level: 'Intermediate' },
+      { skillId: 'network_optimization', level: 'Advanced' }
+    ],
+    relatedCareers: ['network_engineer', 'rf_engineer', 'communication_engineer'],
+    averageSalary: '₹3.5-16 LPA',
+    growthProspect: 'High'
+  },
+  {
+    id: 'automotive_electronics_engineer',
+    title: 'Automotive Electronics Engineer',
+    description: 'Develop electronic systems for vehicles including ECUs, infotainment, and autonomous driving features.',
+    skillRequirements: [
+      { skillId: 'automotive_protocols', level: 'Advanced' },
+      { skillId: 'can_bus', level: 'Advanced' },
+      { skillId: 'autosar', level: 'Intermediate' },
+      { skillId: 'embedded_automotive', level: 'Advanced' },
+      { skillId: 'functional_safety', level: 'Intermediate' },
+      { skillId: 'vehicle_dynamics', level: 'Intermediate' }
+    ],
+    relatedCareers: ['embedded_engineer', 'control_systems_engineer', 'mechatronics_engineer'],
+    averageSalary: '₹4-18 LPA',
+    growthProspect: 'Very High'
+  },
+  {
+    id: 'biomedical_electronics_engineer',
+    title: 'Biomedical Electronics Engineer',
+    description: 'Design and develop electronic medical devices and healthcare monitoring systems.',
+    skillRequirements: [
+      { skillId: 'biomedical_instrumentation', level: 'Advanced' },
+      { skillId: 'medical_device_standards', level: 'Advanced' },
+      { skillId: 'signal_processing', level: 'Advanced' },
+      { skillId: 'regulatory_compliance', level: 'Intermediate' },
+      { skillId: 'biosensors', level: 'Advanced' },
+      { skillId: 'medical_imaging', level: 'Intermediate' }
+    ],
+    relatedCareers: ['medical_device_engineer', 'clinical_engineer', 'research_engineer'],
+    averageSalary: '₹4-16 LPA',
+    growthProspect: 'High'
+  },
+  {
+    id: 'control_systems_engineer',
+    title: 'Control Systems Engineer',
+    description: 'Design automated control systems for industrial processes and robotic applications.',
+    skillRequirements: [
+      { skillId: 'control_theory', level: 'Advanced' },
+      { skillId: 'plc_programming', level: 'Advanced' },
+      { skillId: 'scada_systems', level: 'Advanced' },
+      { skillId: 'matlab_simulink', level: 'Advanced' },
+      { skillId: 'pid_control', level: 'Advanced' },
+      { skillId: 'industrial_automation', level: 'Advanced' }
+    ],
+    relatedCareers: ['automation_engineer', 'robotics_engineer', 'process_engineer'],
+    averageSalary: '₹3.5-15 LPA',
+    growthProspect: 'High'
+  },
+  {
+    id: 'electronics_consultant',
+    title: 'Electronics Consultant',
+    description: 'Provide expert technical advice and solutions to clients on electronic systems and products.',
+    skillRequirements: [
+      { skillId: 'technical_consulting', level: 'Advanced' },
+      { skillId: 'project_management', level: 'Advanced' },
+      { skillId: 'client_communication', level: 'Advanced' },
+      { skillId: 'system_analysis', level: 'Advanced' },
+      { skillId: 'cost_optimization', level: 'Intermediate' },
+      { skillId: 'business_development', level: 'Intermediate' }
+    ],
+    relatedCareers: ['technical_lead', 'project_manager', 'sales_engineer'],
+    averageSalary: '₹6-30 LPA',
+    growthProspect: 'High'
+  }
 ];
 
 
@@ -724,9 +964,10 @@ const findSkillLocally = (userInput) => {
   if (!cleanInput) return null;
 
   // check if user input matches a skill name or alias
-  return allSkills.find(skill => 
-    skill.aliases.some(alias => cleanInput.includes(alias.toLowerCase()))
-  );
+ // checks if user input is exactly equal to an alias
+return allSkills.find(skill => 
+  skill.aliases.some(alias => cleanInput === alias.toLowerCase())
+);
 };
 
 // takes a string of skills and matches them to our list
