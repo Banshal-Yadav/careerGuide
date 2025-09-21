@@ -16,10 +16,24 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
-    /* border-top: 1px solid rgb(38, 37, 37); */
 }
 
 .stats-info {
     color: var(--text-muted);
     margin: 0 0 0 0 ;
+}
+
+@media (max-width: 768px) {
+    .stats-title {
+        font-size: 2rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .stats-info {
+        padding: 0 1rem;
+    }
+    .Stats-Container {
+        padding-top: 0;
+        margin-top: 1rem;
+    }
 }

@@ -12,3 +12,11 @@
     color: var(--text-primary);
     border: 1px solid var(--text-secondary) ;
 }
+
+
+@media (max-width: 768px) {
+    .chip-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}

@@ -30,6 +30,7 @@
     align-items: center;
     gap: 1rem;
     color: var(--text-muted);
+    flex-wrap: wrap; 
 }
 .dummy-data-select {
     padding: 0.5rem 0.8rem;
@@ -45,12 +46,12 @@
     border-color: var(--accent-primary);
 }
 .feedback-message {
-    color: var(--success); 
+    color: var(--success);
     width: 100%;
     text-align: center;
     font-style: italic;
     margin-bottom: 1rem;
-    margin-top: -1rem; 
+    margin-top: -1rem;
 }
 .resume-form {
   display: flex;
@@ -123,7 +124,7 @@
     display: flex;
     justify-content: center;
     height: 820px;
-    overflow: hidden;
+    overflow: hidden; 
 }
 #resume-to-download {
     background-color: #fff;
@@ -136,6 +137,7 @@
     transform-origin: top center;
     transform: scale(0.75);
     margin: 0;
+    transition: transform 0.3s ease; 
 }
 .resume-preview-container {
     display: flex;
@@ -195,6 +197,7 @@
     font-style: italic;
     color: #555;
     margin: 0.2rem 0;
+    word-break: break-all; 
 }
 .job-date, .grad-year {
     font-size: 0.85rem;
@@ -214,6 +217,7 @@
     margin-bottom: 0.6rem;
     font-size: 0.9rem;
     color: #555;
+    word-break: break-all; 
 }
 .skill-chips {
     display: flex;
@@ -233,6 +237,7 @@
     display: flex;
     justify-content: center;
     gap: 1rem;
+    flex-wrap: wrap; 
 }
  .resume-actions button {
     padding: 0.8rem 1.5rem;
@@ -276,4 +281,48 @@
 .back-btn:hover {
     background-color: var(--secondary-bg);
     color: var(--text-primary);
+}
+
+
+@media (max-width: 768px) {
+    .resume-builder-container {
+        padding: 1rem;
+        margin: 1.5rem;
+    }
+
+    .resume-builder-title {
+        font-size: 1.8rem;
+    }
+
+    .resume-header-actions {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .date-inputs {
+        flex-direction: column;
+    }
+
+   
+    #resume-to-download {
+        transform: scale(0.55);
+    }
+    .resume-preview-wrapper {
+        height: 550px; 
+        padding: 1rem 0;
+    }
+
+    .resume-actions button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #resume-to-download {
+        transform: scale(0.4);
+    }
+    .resume-preview-wrapper {
+        height: 450px;
+    }
 }

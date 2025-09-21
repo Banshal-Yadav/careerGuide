@@ -1,6 +1,5 @@
-
 .cta-banner-section {
-    padding: 5rem 0;
+    padding: 5rem 1rem;
     margin-top: 3rem;
     background-color: var(--secondary-bg);
     background-image: radial-gradient(var(--border-color) 1px, transparent 0);
@@ -17,7 +16,7 @@
     border-radius: 18px;
     overflow: hidden;
     border: 1px solid var(--border-color);
-    box-shadow: 0 10px 40px var(--shadow-heavy); 
+    box-shadow: 0 10px 40px var(--shadow-heavy);
     background-color: var(--primary-bg);
 }
 
@@ -30,11 +29,9 @@
 
 .cta-image-column img {
     width: 100%;
-    height: auto; 
+    height: 100%;
     object-fit: cover;
-    opacity: 0.8; 
-    border-top-left-radius: 18px;
-    border-bottom-left-radius: 18px;
+    opacity: 0.8;
 }
 
 .cta-text-column {
@@ -43,11 +40,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: left; 
+    text-align: left;
 }
 
 .cta-title {
-    font-size: 2.8rem; 
+    font-size: 2.8rem;
     font-weight: 700;
     line-height: 1.2;
     margin: 0 0 1rem 0;
@@ -62,10 +59,10 @@
 }
 
 .cta-subtitle {
-    font-size: 1.1rem; 
+    font-size: 1.1rem;
     color: var(--text-secondary);
-    margin: 0 0 2rem 0; 
-    max-width: 500px; 
+    margin: 0 0 2rem 0;
+    max-width: 500px;
 }
 
 .cta-button {
@@ -84,17 +81,27 @@
 
 .cta-button:hover {
     background: var(--accent-primary) ;
-    transform: translateY(-3px); 
+    transform: translateY(-3px);
 }
 
+
 @media (max-width: 900px) {
+    .cta-banner-section {
+        padding: 3rem 1rem;
+    }
     .cta-banner-wrapper {
-        flex-direction: column-reverse; /* image will be on top */
+        flex-direction: column-reverse; 
     }
     .cta-text-column {
         padding: 2.5rem;
         align-items: center;
         text-align: center;
+    }
+    .cta-title {
+        font-size: 2.2rem;
+    }
+    .cta-subtitle {
+        font-size: 1rem;
     }
     .cta-button {
         align-self: center;

@@ -14,7 +14,7 @@ import AssessmentPg from './components/AssessmentPg.jsx';
 import Faq from "./Card/Faq.jsx";
 import Profile from './components/Profile.jsx';
 import ResumeBuilder from './components/Resume/ResumeBuilder.jsx';
-import { useEffect } from 'react'; 
+import { useEffect } from 'react';
 
 function App() {
   const { user, loading, loginAsGuest } = useAuth();

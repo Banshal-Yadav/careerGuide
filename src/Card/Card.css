@@ -18,3 +18,12 @@
 .card:hover {
     border-color: rgb(105, 103, 103);
 }
+
+
+@media (max-width: 768px) {
+    .card {
+        width: 80%;
+        height: auto;
+        padding: 1.5rem;
+    }
+}
