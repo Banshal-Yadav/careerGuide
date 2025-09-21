@@ -3,7 +3,7 @@ import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAVohpU1g5VWMt8JHDIGm145JUAV4pOyxE",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "aicareerguide.firebaseapp.com",
   projectId: "aicareerguide",
   storageBucket: "aicareerguide.firebasestorage.app",

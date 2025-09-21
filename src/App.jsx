@@ -43,8 +43,9 @@ function App() {
               <Pgtitle />
               <GetStartBtn />
               <ChipTabContainer />
-              <StatsContainer />
-              <SolutionSec />
+              {/* non-essential components hidden for demo  */}
+              {/* <StatsContainer /> */}
+              { /* <SolutionSec /> */}  
               <Feature />
               <Faq />
               <Footer />
