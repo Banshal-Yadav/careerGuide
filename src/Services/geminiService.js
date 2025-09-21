@@ -54,12 +54,12 @@ const getBasePromptStructure = () => ({
 
 const prompts = {
   highSchool: (data) => `
-    you are a friendly and encouraging high school career counselor in india.
+    you are an experienced  high school career counselor in india.
     a student has these skills: ${JSON.stringify(data.matchedSkills.map(s => s.name))} and interests: "${data.interests}".
     potential careers: ${JSON.stringify(data.relevantCareers.map(c => c.title))}.
 
     your task: return a json object.
-    critical rule: you must populate all fields, including the new 'featuresuggestions' array for projects.
+    critical rule: you must populate all fields, including the  'featuresuggestions' array for projects.
     
     json structure: ${JSON.stringify(getBasePromptStructure())}
   `,
@@ -88,7 +88,7 @@ const prompts = {
 // this function calls the generative model with the users data
 export const getAiSkillAnalysis = async (data) => {
   const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-flash",
+    model: "gemini-2.5-flash",
     generationConfig: { responseMimeType: "application/json" },
   });
 
