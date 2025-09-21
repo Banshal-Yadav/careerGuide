@@ -17,19 +17,14 @@ const Icon = ({ name, ...props }) => {
     return <LucideIcon {...props} />;
 };
 
-// new enhanced components
-const StrengthCard = ({ skill, context, icon, matchLevel }) => (
+
+const StrengthCard = ({ skill, context, icon }) => (
     <div className="strength-card">
         <div className="strength-card-header">
             <Icon name={icon} size={20} className="strength-icon" />
             <span className="strength-skill">{skill}</span>
         </div>
         <p className="strength-context">{context}</p>
-        <div className="match-level-container">
-            <span className="match-level-label">career match</span>
-            <div className="match-level-bar-outer"><div className="match-level-bar-inner" style={{width: matchLevel}}></div></div>
-            <span className="match-level-value">{matchLevel}</span>
-        </div>
     </div>
 );
 
@@ -63,7 +58,6 @@ const SkillToBuildCard = ({ skill, suggestedFirstStep, icon }) => (
     </div>
 );
 
-// updated project brief to include feature suggestions
 const ProjectBriefCard = ({ title, objective, skillsUsed, difficulty, featureSuggestions }) => (
     <div className={`project-brief-card difficulty-${difficulty}`}>
         <div className="project-brief-header">
@@ -84,7 +78,6 @@ const ProjectBriefCard = ({ title, objective, skillsUsed, difficulty, featureSug
     </div>
 );
 
-// updated resource card to use icons
 const ResourceCard = ({ name, issuer, platform, icon }) => (
     <div className="resource-card">
         <Icon name={icon} size={32} className="resource-icon" />
@@ -95,7 +88,6 @@ const ResourceCard = ({ name, issuer, platform, icon }) => (
     </div>
 );
 
-// career accordion now uses the new enhanced cards
 const CareerAccordion = ({ career, isOpen, onClick }) => (
     <div className={`career-accordion-item ${isOpen ? 'open' : ''}`}>
         <button className="career-accordion-header" onClick={onClick}>
@@ -128,8 +120,6 @@ const CareerAccordion = ({ career, isOpen, onClick }) => (
     </div>
 );
 
-
-// the main 3-step results component
 const AnalysisResults = ({ analysis, onRetry }) => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
@@ -205,7 +195,6 @@ const AnalysisResults = ({ analysis, onRetry }) => {
   );
 };
 
-// this is the main assessment component
 const Assessment = () => {
   const { user } = useAuth();
   const [persona, setPersona] = useState(null);

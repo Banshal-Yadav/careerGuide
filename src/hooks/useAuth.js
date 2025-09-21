@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { 
-  onAuthStateChanged, 
-  signInWithEmailAndPassword, 
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signInWithPopup,
-  signOut 
+  signOut,
+  signInAnonymously 
 } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase/config';
 
@@ -32,9 +33,14 @@ export const useAuth = () => {
     return await signInWithPopup(auth, googleProvider);
   };
 
+  // the guest login function 
+  const loginAsGuest = async () => {
+    return await signInAnonymously(auth);
+  };
+
   const logout = async () => {
     return await signOut(auth);
   };
 
-  return { user, loading, login, register, loginWithGoogle, logout };
+  return { user, loading, login, register, loginWithGoogle, logout, loginAsGuest };
 };

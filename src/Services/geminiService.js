@@ -3,13 +3,13 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(apiKey);
 
+// this function defines the json structure we want back from the ai
 const getBasePromptStructure = () => ({
   summary: "a brief, encouraging summary (2-4 sentences).",
   strengths: [{ 
     skill: "a key skill", 
     context: "a short phrase on why it's a strength",
     icon: "a relevant lucide-react icon name (e.g., 'Database', 'Code', 'Paintbrush')",
-    matchLevel: "a percentage string like '95%'"
   }],
   growthAreas: [{ 
     skill: "a skill to develop", 
@@ -41,13 +41,22 @@ const getBasePromptStructure = () => ({
       courseName: "a specific, relevant course name.",
       icon: "a relevant lucide-react icon name (e.g., 'BookOpen', 'Youtube')"
     }],
-    suggestedProjects: [{
-      title: "a practical, hands-on project idea.",
-      objective: "a one-sentence goal for the project",
-      skillsUsed: ["a skill this project uses", "another skill"],
-      difficulty: "beginner/intermediate/advanced",
-      featureSuggestions: ["a specific feature to build (e.g., 'user authentication').", "another feature suggestion."]
-    }]
+    suggestedProjects: [
+      {
+        title: "a practical, hands-on project idea.",
+        objective: "a one-sentence goal for the project",
+        skillsUsed: ["a skill this project uses", "another skill"],
+        difficulty: "beginner/intermediate/advanced",
+        featureSuggestions: ["a specific feature to build (e.g., 'user authentication').", "another feature suggestion."]
+      },
+      {
+        title: "a second, different project idea.",
+        objective: "a concise goal for this other project",
+        skillsUsed: ["a relevant skill", "another skill"],
+        difficulty: "beginner/intermediate/advanced",
+        featureSuggestions: ["a core feature for this project.", "an optional advanced feature."]
+      }
+    ]
   }]
 });
 
@@ -88,7 +97,7 @@ const prompts = {
 // this function calls the generative model with the users data
 export const getAiSkillAnalysis = async (data) => {
   const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-flash",
+    model: "gemini-1.5-flash",
     generationConfig: { responseMimeType: "application/json" },
   });
 

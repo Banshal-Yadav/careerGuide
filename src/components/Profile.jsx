@@ -3,21 +3,53 @@ import { useAuth } from '../hooks/useAuth';
 import { doc, getDoc, updateDoc, arrayRemove } from 'firebase/firestore'; 
 import { db } from '../firebase/config';
 import './Profile.css';
-import { ChevronDown, ChevronUp, Target, TrendingUp, Briefcase, Zap, IndianRupee, User, Edit, FileText, Download, Trash2 } from 'lucide-react';
+import * as icons from 'lucide-react'; // dynamically imports all icons
 import { useNavigate } from 'react-router-dom';
 
+// helper component to render any lucide-react icon by its string name
+const Icon = ({ name, ...props }) => {
+    const LucideIcon = icons[name];
+    if (!LucideIcon) {
+        return <icons.HelpCircle {...props} />; // fallback for any unknown icon name
+    }
+    return <LucideIcon {...props} />;
+};
+
+// card for displaying a course or certification
+const ResourceCard = ({ name, issuer, platform, icon }) => (
+    <div className="profile-resource-card">
+        <Icon name={icon} size={28} className="profile-resource-icon" />
+        <div className="profile-resource-text">
+            <span className="profile-resource-name">{name}</span>
+            <span className="profile-resource-issuer">by {issuer || platform}</span>
+        </div>
+    </div>
+);
+
+// card for displaying a suggested project
+const ProjectBriefCard = ({ title, objective, skillsUsed, difficulty }) => (
+    <div className={`profile-project-card difficulty-${difficulty}`}>
+        <div className="profile-project-header">
+            <icons.FolderKanban size={18} />
+            <h5>{title}</h5>
+        </div>
+        <p className="profile-project-objective">{objective}</p>
+        <div className="profile-project-skills">
+            {skillsUsed.map((skill, i) => <span key={i} className="profile-skill-tag">{skill}</span>)}
+        </div>
+        <span className="profile-project-difficulty">{difficulty}</span>
+    </div>
+);
+
+// component for a single, expandable assessment record
 const AssessmentCard = ({ assessment }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const formatDate = (timestamp) => {
     if (!timestamp || !timestamp.seconds) return "Invalid Date";
     const date = new Date(timestamp.seconds * 1000);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
+    return date.toLocaleDateString('en-GB'); 
   };
 
-  // contextual chip display for the profile page
   const ContextualChipDisplay = ({ skill, context, type }) => (
     <li className={`custom-list-item-${type}`}>
       <strong>{skill}:</strong> {context}
@@ -27,38 +59,70 @@ const AssessmentCard = ({ assessment }) => {
   return (
     <div className="assessment-card">
       <div className="assessment-card-header" onClick={() => setIsExpanded(!isExpanded)}>
-        <div><p className="assessment-date">{formatDate(assessment.createdAt)}</p><h4 className="assessment-skills">{assessment.rawSkills}</h4></div>
-        <button className="expand-btn">{isExpanded ? <ChevronUp /> : <ChevronDown />}</button>
+        <div>
+          <p className="assessment-date">{formatDate(assessment.createdAt)}</p>
+          <h4 className="assessment-skills">{assessment.rawSkills}</h4>
+        </div>
+        <button className="expand-btn">{isExpanded ? <icons.ChevronUp /> : <icons.ChevronDown />}</button>
       </div>
       {isExpanded && (
         <div className="assessment-card-body">
-          <div className="card-section"><h5 className="section-title"><Zap size={18} /> Executive Summary</h5><p>{assessment.aiSummary || 'No summary available for this assessment'}</p></div>
+          <div className="card-section">
+            <h5 className="section-title"><icons.Zap size={18} /> Executive Summary</h5>
+            <p>{assessment.aiSummary || 'No summary available'}</p>
+          </div>
           <div className="strengths-growth-grid-profile">
             <div className="card-section">
-              <h5 className="section-title"><Target size={18} /> Strengths</h5>
+              <h5 className="section-title"><icons.Target size={18} /> Strengths</h5>
               <ul className="custom-list">
-                  {assessment.aiStrengths?.length > 0 ? assessment.aiStrengths.map((strength, i) => <ContextualChipDisplay key={i} skill={strength.skill} context={strength.context} type="strength" />) : <li>No strengths analysis available</li>}
+                  {assessment.aiStrengths?.length > 0 
+                    ? assessment.aiStrengths.map((s, i) => <ContextualChipDisplay key={i} {...s} type="strength" />) 
+                    : <li>No strengths analysis available</li>}
               </ul>
             </div>
             <div className="card-section">
-              <h5 className="section-title"><TrendingUp size={18} /> Growth Areas</h5>
+              <h5 className="section-title"><icons.TrendingUp size={18} /> Growth Areas</h5>
                <ul className="custom-list">
-                  {assessment.aiGrowthAreas?.length > 0 ? assessment.aiGrowthAreas.map((area, i) => <ContextualChipDisplay key={i} skill={area.skill} context={area.context} type="growth" />) : <li>No growth area analysis available</li>}
+                  {assessment.aiGrowthAreas?.length > 0 
+                    ? assessment.aiGrowthAreas.map((area, i) => <ContextualChipDisplay key={i} {...area} type="growth" />) 
+                    : <li>No growth area analysis available</li>}
               </ul>
             </div>
           </div>
           <div className="card-section">
-             <h5 className="section-title"><Briefcase size={18} /> Top Career Recommendations</h5>
+             <h5 className="section-title"><icons.Briefcase size={18} /> Career Recommendations</h5>
              <div className="careers-list">
-                {assessment.aiCareerAnalysis?.length > 0
-                  ? assessment.aiCareerAnalysis.map((career, i) => (
-                      <div key={i} className="career-item">
-                        <div className="career-item-header"><h6>{career.title}</h6><span className="match-score">{career.matchScore || 'N/A'}% Match</span></div>
-                        <p className="career-fit salary-info"><IndianRupee size={14} /> {career.salaryRange || 'Not available'}</p>
-                      </div>
-                    ))
-                  : <p>No career recommendations available for this assessment</p>
-                }
+                {assessment.aiCareerAnalysis?.length > 0 ? assessment.aiCareerAnalysis.map((career, i) => (
+                  <div key={i} className="career-item-detailed">
+                    <div className="career-item-header"><h6>{career.title}</h6></div>
+                    <p className="career-fit salary-info"><icons.IndianRupee size={14} /> {career.salaryRange || 'Not available'}</p>
+                    
+                    {career.suggestedCertifications?.length > 0 && (
+                        <div className="details-section">
+                            <h6 className="details-title"><icons.Award size={16}/> Certifications</h6>
+                            <div className="details-grid">
+                                {career.suggestedCertifications.map((cert, j) => <ResourceCard key={j} {...cert} />)}
+                            </div>
+                        </div>
+                    )}
+                    {career.suggestedCourses?.length > 0 && (
+                        <div className="details-section">
+                            <h6 className="details-title"><icons.BookOpen size={16}/> Courses</h6>
+                            <div className="details-grid">
+                                {career.suggestedCourses.map((course, j) => <ResourceCard key={j} name={course.courseName} platform={course.platform} icon={course.icon} />)}
+                            </div>
+                        </div>
+                    )}
+                    {career.suggestedProjects?.length > 0 && (
+                         <div className="details-section">
+                            <h6 className="details-title"><icons.FolderKanban size={16}/> Projects</h6>
+                            <div className="details-grid projects">
+                                {career.suggestedProjects.map((proj, j) => <ProjectBriefCard key={j} {...proj} />)}
+                            </div>
+                        </div>
+                    )}
+                  </div>
+                )) : <p>No career recommendations available</p>}
              </div>
           </div>
         </div>
@@ -67,14 +131,13 @@ const AssessmentCard = ({ assessment }) => {
   );
 };
 
-
+// component for a single resume record
 const ResumeCard = ({ resume, onDelete }) => {
     const navigate = useNavigate();
-
     return (
         <div className="resume-card">
             <div className="resume-card-header">
-                <FileText size={40} />
+                <icons.FileText size={40} />
                 <div>
                     <h3 className="resume-card-title">{resume.fullName}'s Resume</h3>
                     <p className="resume-card-subtitle">Last updated: {new Date(resume.lastUpdated).toLocaleDateString()}</p>
@@ -82,20 +145,20 @@ const ResumeCard = ({ resume, onDelete }) => {
             </div>
             <div className="resume-card-actions">
                 <button onClick={() => navigate('/resume-builder', { state: { resumeId: resume.id } })} className="dashboard-btn primary-action-btn">
-                    <Edit size={16}/> Edit
+                    <icons.Edit size={16}/> Edit
                 </button>
                 <button onClick={() => navigate('/resume-builder', { state: { resumeId: resume.id, isPreview: true } })} className="dashboard-btn">
-                    <Download size={16}/> View & Download
+                    <icons.Download size={16}/> View & Download
                 </button>
                 <button onClick={() => onDelete(resume.id)} className="dashboard-btn delete-resume-btn">
-                    <Trash2 size={16}/> Delete
+                    <icons.Trash2 size={16}/> Delete
                 </button>
             </div>
         </div>
     );
 };
 
-
+// main profile page component
 const Profile = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -130,7 +193,6 @@ const Profile = () => {
     if (!window.confirm("are you sure you want to permanently delete this resume?")) {
         return;
     }
-
     const profileRef = doc(db, 'profiles', user.uid);
     const resumeToDelete = profileData.resumes.find(r => r.id === resumeId);
 
@@ -148,20 +210,21 @@ const Profile = () => {
     }
   };
 
-  if (loading) return <div className="profile-container"><p>loading profile</p></div>;
+  if (loading) return <div className="profile-container"><p>loading profile...</p></div>;
 
   const hasAssessments = profileData?.assessments?.length > 0;
   const hasResumes = profileData?.resumes?.length > 0;
   const canCreateResume = (profileData?.resumes?.length || 0) < 3;
 
-
   return (
     <div className="profile-container">
       <div className="profile-dashboard">
         <div className="dashboard-header">
-          <User size={40} />
+          <icons.User size={40} />
           <div>
-            <h2 className="dashboard-name">{user.email}</h2>
+            <h2 className="dashboard-name">
+              {user.isAnonymous ? 'Guest Account' : user.email}
+            </h2>
             <p className="dashboard-subtitle">welcome to your personal dashboard</p>
           </div>
         </div>
@@ -175,7 +238,7 @@ const Profile = () => {
             disabled={!canCreateResume}
             title={canCreateResume ? "create a new resume" : "you have reached the maximum of 3 resumes"}
         >
-            <Edit size={16}/> Create New Resume
+            <icons.Edit size={16}/> Create New Resume
         </button>
       </div>
       
